@@ -1,0 +1,86 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat{\fonttbl{\f0\fnil\fcharset0 Arial;}}
+{\colortbl ;\red0\green0\blue255;}
+{\*\generator Riched20 10.0.17134}\viewkind4\uc1 
+\pard\sl240\slmult1\qc\tx568\ul\b\fs24\lang9 Printing Issues\ulnone\b0\par
+
+\pard\sl240\slmult1\qj\tx568\par
+
+\pard\sb100\sl240\slmult1\qj\tx568\lang2057 To possibly identify your problem you can see if Windows has registered useful information in the event viewer. MyComputer (right-click) > Manage > SystemTools > EventViewer.\par
+Check user as to when problem started i.e. "Printer spooler stopped working"... When... "possibly  when hit by power spikes / power outages" = could be memory failure or other hardware problems .\par
+The print spooler service may be starting then stopping if there are corrupt print jobs entering the queue. On some systems the queues can "heal" themselves after an interval and appear intermittent.\par
+\par
+\ul Make sure the Print Spooler service is running \ulnone ...\par
+1.\tab Go to "Start" then "Run" and type \b services.msc \b0 then click OK.\par
+2.\tab Scroll down and find Printer Spooler service under the Name column\par
+
+\pard\fi-568\li568\sb100\sl240\slmult1\qj\tx568 3.\tab Right click on Printer Spooler and select Properties. From dropdown menu choose automatic for Startup type. Check Service status, if service is stopped click on Start and than OK button, but if service is started first stop it with Stop button than click on Start and OK.\par
+
+\pard\sb100\sl240\slmult1\qj\tx568 *Also..check for dependencies... while in the Print Spooler service properties..\par
+
+\pard\fi-568\li568\sb100\sl240\slmult1\qj\tx568 4.\tab Click the Dependencies tab. The first box lists all of the system services that must be running for Print Spooler to start. These are the dependencies.\par
+
+\pard\sb100\sl240\slmult1\qj\tx568 5.\tab Make a note of each service, click OK\par
+
+\pard\fi-568\li568\sb100\sl240\slmult1\qj\tx568 6.\tab Now go through the list and start each service upon which Print Spooler is dependent (if the service is not already started). If a service was not started, right-click it, click Properties and then confirm that the Startup type is Automatic.\par
+
+\pard\sb100\sl240\slmult1\qj\tx568\ul Print Spooler will not just stop for any reason\ulnone .\par
+The print spooler is usually set up to restart 5 times after a failure. If the spooler continues to fail, there is an underlying issue causing it to fail.\par
+1.\tab Go to:\tab %windir%\\system32\\spool\\printers and delete all files inside this folder.\par
+\tab Check if you need to restart spooler service and monitor the event log to see if it is still failing.\par
+
+\pard 
+{\pntext\f0 1.\tab}{\*\pn\pnlvlbody\pnf0\pnindent360\pnstart1\pndec{\pntxta.}}
+\sb100\sl240\slmult1\qj\tx568\tab Stop Print Spooler service (kill the process)\par
+{\pntext\f0 2.\tab}\tab Navigate to: %windir%\\system32\\spool\\servers[name]\par
+{\pntext\f0 3.\tab}\tab Delete any files in these folders. \par
+{\pntext\f0 4.\tab}\tab Restart the Print Spooler service.\par
+
+\pard\sb100\sl240\slmult1\qj\tx568\par
+Issues can be due to a bad or corrupt printer driver loaded into the spool process.\par
+Process Monitor can help show DLL process loading driver files, especially DLL allocated memory.\par
+Try setting the printer settings to print RAW and directly to the printer.\par
+\b Ensure you have recent print drivers for replacement (use manufacturer last suitable driver rather than windows updated) AVOID 3rd party driver "fixes" like the plague, and never swap .DLLs between machines in the hopes it works on another unless you can put them back.\par
+\b0 Stop print spooler service and either delete the rogue printers from the system one at a time or\par
+Go to: %windir%\\system32\\spool\\drivers\par
+\tab If your OS is 32 Bit go to : W32X86\par
+\tab If your OS is 64 bit go to : x64\par
+*WARNING - THIS WILL DELETE ALL INSTALLED PRINTERS*\par
+Delete all files in this folder and reinstall your printers, yo may need to restart spooler service first then watch the memory usage after testing each reinstall\par
+\ul\b Network Issues\ulnone\b0\par
+use name or Port rather than {{\field{\*\fldinst{HYPERLINK "\\\\\\\\computer\\\\server"}}{\fldrslt{\\\\computer\\server\ul0\cf0}}}}\f0\fs24\par
+\par
+
+\pard 
+{\pntext\f0 1.\tab}{\*\pn\pnlvlbody\pnf0\pnindent0\pnstart1\pndec{\pntxta.}}
+\sb100\sl240\slmult1\qj\tx568\tab In "Devices and Printers" click "Add a Printer."\par
+{\pntext\f0 2.\tab}\b\tab Select "Add a local printer."\b0\par
+{\pntext\f0 3.\tab}\tab Select "Create a new Port" and use "Local Port" as the Type.\par
+{\pntext\f0 4.\tab}\tab Enter Network Path to the Printer (ie. \\ \\ComputerName\\SharedPrinterName) as the Port Name.\par
+{\pntext\f0 5.\tab}\tab Choose the printer from the list.\par
+{\pntext\f0 6.\tab}\tab Choose whether you want to use the driver that is currently installed or replace it.\par
+{\pntext\f0 7.\tab}\b\tab Name the printer.\b0\par
+{\pntext\f0 8.\tab}\tab Choose whether to \b share the printer \b0 or not.\par
+{\pntext\f0 9.\tab}\tab Choose whether to set the printer as the default printer or not.\lang9\par
+
+\pard\sb100\sl240\slmult1\qj\tx568\lang2057\par
+Have you  tried to install the network printer on a TCP/IP port!?\par
+\b Add printer-local printer\b0\par
+Choose \b add a port-TCP/IP \b0 Port enter the IP address of the printer\par
+click next till option to install driver choose have disk make sure it is on the TCP/IP port install drivers\par
+\par
+\b Some users find one or other of above work \b0 e.g. Adding the network printer as a "named" printer worked, but did not work when they tried to add as TCP/IP port (using Windows 7 Ultimate 32-bit).  \par
+\lang9 from {{\field{\*\fldinst{HYPERLINK https://social.technet.microsoft.com/Forums/windows/en-US/b378c7a7-c66d-4812-ae54-59d138fe5c5c/windows-7-rc-network-printer-install-issue?forum=w7itpronetworking }}{\fldrslt{https://social.technet.microsoft.com/Forums/windows/en-US/b378c7a7-c66d-4812-ae54-59d138fe5c5c/windows-7-rc-network-printer-install-issue?forum=w7itpronetworking\ul0\cf0}}}}\f0\fs24\par
+\par
+\lang2057 Seems to be one issue was packet loss. The switch had hard coded 100Mbps NIC and on Server, it was negotiating at half duplex. Changed both settings to 1000Mbps full duplex. Now it looks like it only takes about a minute or less to print the 10 pages of that PDF file. It will print two pages and there is a delay of about 4 seconds and then print the next 2 two pages and it continues that process until all the pages are all printed. So it is partially fixed but not completely. \par
+\par
+\ul\b Firewall\ulnone\b0\par
+Turns out one person that setup the machines used a bidirectional firewall as the default gateway and  had port 445 blocked. This would explain why some machines were unable to communicate domain related objects, but could still ping back and forth.\par
+Spoolsv (print spooler service) on the server listens on a high dynamic port (49152-65535) ("RpcTcp"). Blocking those could cause the delay. The client may try the high port for a while and then go to port 135 (epmap). This doesn't seem to be documented online at this time.\par
+\par
+\ul\b Network Policy issues\ulnone\b0\par
+Consider setting Disallow installation of printers using kernel-mode drivers as they cause problems, try changing Execute print drivers in isolated processes / Always render print jobs on the server. See {{\field{\*\fldinst{HYPERLINK https://support.microsoft.com/en-us/help/234270 }}{\fldrslt{https://support.microsoft.com/en-us/help/234270\ul0\cf0}}}}\f0\fs24\par
+\par
+\ul A printer using SPM (standard port monitor) for TCP/IP on \b Windows Server 2003\b0 -based computer.\par
+\ulnone Problem occurs because of an access violation that occurs in the printer-driver process. When this problem occurs, the spooler does not stop, and the SPM port is not reset. This causes the print queue to crash. See {{\field{\*\fldinst{HYPERLINK https://support.microsoft.com/en-us/help/934885 }}{\fldrslt{https://support.microsoft.com/en-us/help/934885\ul0\cf0}}}}\f0\fs24\lang9\par
+}
+ 
