@@ -1,0 +1,54 @@
+%!PS-Adobe-2.0
+%%BoundingBox: 0 0 612 792
+%%Pages: 1
+%%EndComments
+%%Page: 1 1
+/p5	1 def  /p4	 .8 def  /p1	 .2 def
+/n5	-1 def /n4	 -.8 def /n1	 -.2 def
+/eup	{0 p5 rlineto p1 0 rlineto 0 n4 rlineto p1 0 rlineto 0 p4 rlineto
+	 p1 0 rlineto 0 n4 rlineto p1 0 rlineto 0 p4 rlineto p1 0 rlineto
+	 0 n5 rlineto closepath fill} bind def
+/eright	{0 p5 rlineto p5 0 rlineto 0 n1 rlineto n4 0 rlineto 0 n1 rlineto
+	 p4 0 rlineto 0 n1 rlineto n4 0 rlineto 0 n1 rlineto p4 0 rlineto
+	 0 n1 rlineto closepath fill} bind def
+/edown	{0 p5 rlineto p5 0 rlineto 0 n5 rlineto n1 0 rlineto 0 p4 rlineto
+	 n1 0 rlineto 0 n4 rlineto n1 0 rlineto 0 p4 rlineto n1 0 rlineto
+	 0 n4 rlineto closepath fill} bind def
+/eleft	{0 p1 rlineto p4 0 rlineto 0 p1 rlineto n4 0 rlineto 0 p1 rlineto
+	 p4 0 rlineto 0 p1 rlineto n4 0 rlineto 0 p1 rlineto p5 0 rlineto
+	 0 n5 rlineto closepath fill} bind def
+/etable	[/eup load /eright load /edown load /eleft load] def
+/erand	{etable rand 65536 div cvi 4 mod get exec} bind def
+/tan5mf	1 60 div dup sin exch cos div 864 mul def
+
+realtime srand
+
+/Helvetica findfont 9 scalefont setfont
+
+36 36 translate
+/high	720 def
+/wide	540 def
+/first true def
+/label   72 def
+/min     20 def
+
+[100 75 50 37.5 25 20 15 12.5 10 7.5 5 4]
+{/ft exch def
+ /u ft tan5mf mul def /s u 5 mul def
+ /t u 2.5 mul dup min lt {pop min} if def /w s t add def
+ /z first{/first false def s}{w}ifelse def
+  z high le {/high high z sub def
+    save 0 high translate
+    /n wide t add label sub w div cvi def
+    0 s .5 mul 4.5 sub moveto
+    ft =string cvs show
+    wide t add label sub n w mul sub .5 mul label add 0 translate
+    1 1 n cvi {pop
+      0 0 moveto gsave s s scale erand grestore
+      w 0 translate
+    } for
+    restore
+  } if
+} forall
+
+showpage
