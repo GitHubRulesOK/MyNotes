@@ -9,7 +9,7 @@ goto MAIN
 
 			Use space bar for page forward
 
-== A script file to augment SumatraPDF initial seach from the command line ==
+== A script file to augment SumatraPDF initial search from the command line ==
 
 SumatraPDF will usually look for the FIRST matching destination in the Outline / TOC / Bookmarks window pane. 
 For example if the Bookmarks list has an entry for "Chapter 2" then you can open the file using
@@ -38,11 +38,11 @@ You can search for -F="Appendix A" and on the next line, in the same file -searc
 		pause
 		SumatraPDF.exe -find "Content" "lengthy.pdf"
 
-Combining -find or search or -f (must be 1st argument) with 3rd as -page or -name to start from allows to jump start the entry point. However remember ALL options can only find the first match of each as they are progresively working characterwise. So to find first appearance of chapter after page 99 try
+Combining -find or search or -f (must be 1st argument) with 3rd as -page or -name to start from allows to jump start the entry point. However remember ALL options can only find the first match of each as they are progressively working character-wise. So to find first appearance of chapter after page 99 try
 
 	 	SumatraPDF.exe -f "Chapter" -p 100  "lengthy.pdf"
  
-IT IS a SIMPLE adjustment of behaviour, DO NOT BE SUPRISED / complain if target page in a two page mode is on right with bookmark focus highlighting the left page and in combining goto page 6 (and thus also 5) may result in the "FIND" also being located on page 5. ensure you are searching only continuous / single page modes.
+IT IS a SIMPLE adjustment of behaviour, DO NOT BE SURPRISED / complain if target page in a two page mode is on right with bookmark focus highlighting the left page and in combining goto page 6 (and thus also 5) may result in the "FIND" also being located on page 5. ensure you are searching only continuous / single page modes.
 
  Also Zotero Zotfiles or other acrobat callers may here use page= or /page Simply replace their call to AcroRd32.exe with this file.cmd
 ---------------------------------------------------------------------------------
