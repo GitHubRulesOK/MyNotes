@@ -1,4 +1,4 @@
-<!-- : Begin batch script
+<!-- : Begin batch script 2020-11-09--01
 @echo off 
 if %1.==. goto DUH (Do U need Help)
 if exist "%localappdata%\SumatraPDF\SumatraPDF.exe" set SumatraPDF="%localappdata%\SumatraPDF\SumatraPDF.exe"
@@ -47,7 +47,7 @@ IT IS a SIMPLE adjustment of behaviour, DO NOT BE SURPRISED / complain if target
  Also Zotero Zotfiles or other acrobat callers may here use page= or /page Simply replace their call to AcroRd32.exe with this file.cmd
 ---------------------------------------------------------------------------------
 :MAIN
-: Batch commands start here such as testin for -find or -Find etc.
+: Batch commands start here such as testing for -find or -Find etc.
 : NOTE the order is 1=-option 2="[=]variable" 3="Path\name.ext"
 :  OR 1=-option 2="[=]variable" 3=2nd option 4="2nd variable" 5="Path\name.ext"
 :ALGORITHM
@@ -63,7 +63,9 @@ set FileName=%5
 :JUMP
 IF not exist %FileName% echo Invalid filename %FileName%  & goto DUH
  	REM 	REM need to watch out whats happening with " in FindString (escape?)
+For %%O in (-d -dest -n -name -nameddest -named-dest) do if /i %3==%%O goto Name#
 For %%O in (-d -dest -n -name -nameddest -named-dest) do if /i %1==%%O goto Name#
+For %%O in (-p -page page /page) do if /i %3==%%O goto Page#
 For %%O in (-p -page page /page) do if /i %1==%%O goto Page#
 For %%O in (-f -find -s -search) do if /i %1==%%O goto FindX
 :Other Specials
@@ -88,6 +90,7 @@ return
 start "" %SumatraPDF% -named-dest %Target% %FileName%
 goto LAST
 :Page# =either find or without find
+echo start "" %SumatraPDF% -page %Target% %FileName%
 start "" %SumatraPDF% -page %Target% %FileName%
 :LAST since name or page should now be open
 rem if necessary add a delay here
