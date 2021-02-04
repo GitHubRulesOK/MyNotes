@@ -1,4 +1,4 @@
-@echo off & Color 9F & Title SumatraPDF addin Rotate PDF v'21-02-01
+@echo off & Color 9F & Title SumatraPDF addin Rotate PDF v'21-02-04
 @Mode 60,16 & SetLocal EnableDelayedExpansion & pushd %~dp0 & goto MAIN
 Do not delete the above two lines since they are needed to prepare this script.
 
@@ -59,7 +59,7 @@ Presumptions (letter case does not matter, but relative positions do)
 
 ExternalViewers [
 	[
-		CommandLine = cmd.exe /c ""%addins%\RotatePDF\Rotate.cmd" "%1" page=%p"
+		CommandLine = c:\windows\system32\cmd.exe /c ""%addins%\RotatePDF\Rotate.cmd" "%1" page=%p"
 		Name = &QPDF to Permanently Rotate current page
 		Filter = *.pdf
 	]
