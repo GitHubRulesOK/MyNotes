@@ -32,7 +32,7 @@ Presumptions (letter case does not matter, but relative positions do)
 2) there is an "addins" location stored OR set in the users Environment Variables
  
  A reminder about %addins% (skip this section if you have already added other "addins")
- This cmd script is intended to be stored in a folder relative to SumatraPDF=settings.txt
+ This cmd script is intended to be stored in a folder relative to SumatraPDF-settings.txt
  However when run that location can be different for every user. So in order that multiple
  "addins" can be found together they are stored in subfolders of ...\SumatraPDF\Addins.
  When run, the system needs to know where the addins folder is, so we need to SET a
