@@ -1,4 +1,4 @@
-@echo off & Color 9F & Title SumatraPDF addin Rotate PDF v'21-02-04
+@echo off & Color 9F & Title SumatraPDF addin Rotate PDF v'21-02-05
 @Mode 60,16 & SetLocal EnableDelayedExpansion & pushd %~dp0 & goto MAIN
 Do not delete the above two lines since they are needed to prepare this script.
 
@@ -23,7 +23,8 @@ Methodology
  OVER 10 to 32 MB (depends on SumatraPDF version). The indicator would be an
  "open in.pdf:  Permission denied" message towards the end of script. In that case the
  un-rotated source.pdf may have been saved as both filename.bak and -original.pdf
- NOTE password protected files have NOT been allowed for.
+ NOTE password protected files have NOT been allowed for. QPDF v 10.2 will have 
+ better password file handling (currently only available in daily continuous builds)
 
 Presumptions (letter case does not matter, but relative positions do)
 
@@ -135,5 +136,5 @@ echo:
 : then remove : at start of next line
 : del "%~dpn1.bak"
 
-: Optional, you can comment or delete pause if not wanted
-pause
+: Optional, you can comment, change or delete timeout if not wanted (currently 5 seconds)
+timeout /t 5
