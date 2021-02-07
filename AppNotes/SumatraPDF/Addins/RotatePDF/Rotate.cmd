@@ -54,7 +54,7 @@ Presumptions (letter case does not matter, but relative positions do)
  "addins" can be found together they are stored in subfolders of ...\SumatraPDF\Addins.
  When run, the system needs to know where the addins folder is, so we need to SET a
  system-wide environment variable e.g.  SET addins=D:\location of\SumatraPDF\addins
- There is no need to add " marks but it needs to be SET PRIOR to starting SumatraPDF.
+ There is no need to add " " marks but it needs to be SET PRIOR to starting SumatraPDF.
  For many "portableapps" that function may be done as part of their start-up mechanism.
  The simplest way to set user env settings in a static system is to start Edit Env...
  and accept "Edit Environment variables for your account" where you can use Edit > New
