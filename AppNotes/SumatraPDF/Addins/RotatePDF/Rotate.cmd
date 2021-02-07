@@ -143,7 +143,6 @@ copy "%~dpn1.pdf" "%~dpn1.bak" 1>nul
 : it is best to test AFTER rotation test, so as to avoid any mix-up of parameters
 : such as where page number's given but rotation is still unknown.
 : HOWEVER, if given, lets remind user which page(s) was/were requested
-: beware no space in %3&
 if not %3.==. echo  Rotation requested: page(s) = %3 & echo: & echo  If incorrect use 0 to abort
 
 :ROT
