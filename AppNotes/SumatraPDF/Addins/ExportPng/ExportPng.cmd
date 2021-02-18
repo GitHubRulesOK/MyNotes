@@ -1,9 +1,9 @@
-@Mode 60,17 & Color 9F & Title SumatraPDF addin ExportPng [.eXt2.png(s)] v'21-02-18--04
+@Mode 60,17 & Color 9F & Title SumatraPDF addin ExportPng [.eXt2.png(s)] v'21-02-18--05
 @echo off & SetLocal EnableDelayedExpansion & pushd %~dp0 & goto MAIN
 Do not delete the above two lines since they are needed to prepare this script.
 
  Potted version history  v'21-02-18--01 first public release (default is -r 96 dpi)
- v'21-02-18--04 very minor edits addins (..was wrong way round..) also 1-N
+ v'21-02-18--05 very minor edits addins (..was wrong way round..) also 1-N
  is prefered and better acceptance of multiple ranges such as “6-10,12,18,21-25”
 
  Read Me 1st (you can strip out most of these comments in your working copy)
@@ -134,7 +134,8 @@ echo  Page Range requested: page(s) = %pages% & goto RUN
 
 :RANGE
 echo:
-set /p pages="Enter page-range or "r-a,n-g,e-s" (abort=0) = "
+echo  Enter page number or page-range or "r-a,n-g,e-s" (abort=0) 
+set /p pages=" = "
 if %pages%.==0. exit /b
 
 :RUN
