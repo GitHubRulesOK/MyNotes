@@ -1,9 +1,10 @@
-@Mode 60,17 & Color 9F & Title SumatraPDF addin ExportPng [.eXt2.png(s)] v'21-02-18--03
+@Mode 60,17 & Color 9F & Title SumatraPDF addin ExportPng [.eXt2.png(s)] v'21-02-18--04
 @echo off & SetLocal EnableDelayedExpansion & pushd %~dp0 & goto MAIN
 Do not delete the above two lines since they are needed to prepare this script.
 
  Potted version history  v'21-02-18--01 first public release (default is -r 96 dpi)
- v'21-02-18--03 very minor edits addins (..was wrong way round..) and 1-N prefered
+ v'21-02-18--04 very minor edits addins (..was wrong way round..) also 1-N
+ is prefered and better acceptance of multiple ranges such as “6-10,12,18,21-25”
 
  Read Me 1st (you can strip out most of these comments in your working copy)
  Note: Later lines that start with :LETTERS are branches that need to be kept BUT
@@ -30,6 +31,10 @@ Methodology
  no guarantee they will all be processed. Intended as an addin to SumatraPDF, but...
  When installed in the correct addins location you can right click this file and "SendTo
  Desktop as shortcut" where you can ALSO use it for drag and drop (max=ONE file)
+
+ CAUTION due to reflow differences, ePub and FB2 page numbers and appearance will
+ vary wildly from MuPDF compared to those in SumatraPDF. To get a better sync (but 
+ output will never be the same) you can vary font size / name in SumatraPDF-settings.txt.
 
 Presumptions (letter case should not matter, but relative positions do)
 
@@ -122,14 +127,14 @@ pause & exit
 : There is little check if the Pages=range is valid so beware what is acceptable,
 if %3.==. goto RANGE
 : However, if given, lets remind user which page(s) was / were requested
-set pages=%3
-for %%R in (ALL,1-N) do if /i %3.==%%R. set pages=1-N
+set pages="%3"
+for %%R in (All,1-N) do if /i %3.==%%R. set pages=1-N
 echo:
 echo  Page Range requested: page(s) = %pages% & goto RUN
 
 :RANGE
 echo:
-set /p pages="Enter page-range,ranges (use 0 to abort) = "
+set /p pages="Enter page-range or "r-a,n-g,e-s" (abort=0) = "
 if %pages%.==0. exit /b
 
 :RUN
@@ -142,7 +147,7 @@ echo:
 : IMPORTANT default for png images output is highly recommended as -r 96
 : BUT, if intended use is for OCR later, then it should be higher e.g. -r 300
 :
-"..\..\Utils\MuPDF\mutool.exe" draw -r 96 -o "%~dpn1-Page-%%4d.png" "%~f1" %pages%
+"..\..\Utils\MuPDF\mutool.exe" draw -r 96 -o "%~dpn1-Page-%%4d.png" "%~f1" "%pages%"
 echo:
 : pause
 : Optional, you can comment, change or delete timeout if not wanted (currently 5 seconds)
