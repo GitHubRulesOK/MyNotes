@@ -1,8 +1,9 @@
-@Mode 60,17 & Color 9F & Title SumatraPDF addin ExportPng [.eXt2.png(s)] v'21-02-18--01
+@Mode 60,17 & Color 9F & Title SumatraPDF addin ExportPng [.eXt2.png(s)] v'21-02-18--02
 @echo off & SetLocal EnableDelayedExpansion & pushd %~dp0 & goto MAIN
 Do not delete the above two lines since they are needed to prepare this script.
 
- Potted version history  v'21-02-18 first public release (default is -r 96 dpi)
+ Potted version history  v'21-02-18--01 first public release (default is -r 96 dpi)
+ v'21-02-18--02 very minor edit of addins correction (..was wrong way round)
 
  Read Me 1st (you can strip out most of these comments in your working copy)
  Note: Later lines that start with :LETTERS are branches that need to be kept BUT
@@ -84,7 +85,7 @@ End of readme / notes
 : if you have not placed mutool where recommended as is relative to this
 : file which was set at start then you may need to adjust both here and later
 : TL;DR this test should not be needed but for those users that don't RTFM
-if %addins%.==. set addins=..\%~dp0
+if %addins%.==. set addins=%~dp0..
 if not exist "..\..\Utils\MuPDF\mutool.exe" echo: & echo  Either MuTool.exe or this file are not in correct location & goto HELP
 if not exist "%~f1" echo: & echo "%~dpn1%~x1" & echo  Appears NOT to exist as a valid file & goto HELP
 
