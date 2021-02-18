@@ -37,7 +37,7 @@ Presumptions (letter case should not matter, but relative positions do)
  
  A reminder about %addins% (skip this section if you have already added other "addins")
  This cmd script is intended to be stored in a folder relative to SumatraPDF-settings.txt
- However when run that location can be different for every user. Thus in order that multiple
+ However when run, that location can be different for every user. Thus in order that multiple
  "addins" can be found together they are stored in subfolders of ...\SumatraPDF\Addins.
  When run, the system needs to know where the addins folder is, so we need to SET a
  system-wide environment variable e.g.  SET addins=D:\location of\SumatraPDF\addins
@@ -48,11 +48,11 @@ Presumptions (letter case should not matter, but relative positions do)
  Variable name: (key in) addins
  Variable value: (key in or SAFER is browse directory) e.g. c:\myapps\sumatrapdf\addins
  Once done don't forget to select OK
- For a USB startup batch file use something like SET addins=%~d0Apps\sumatrapdf\addins
+ For a USB start-up batch file use something like SET addins=%~d0Apps\sumatrapdf\addins
 
 3) A recent copy of mutool.exe must be in ...\SumatraPDF\Utils\MuPDF\
-    Note there are additional files supplied in both of the 2 latest windows zip files
-    from the download links above. However, you should ONLY need one, mutool.exe
+    Note that there are additional files supplied in both of the 2 latest windows zip
+    files from the download links above. However, you should ONLY need one, mutool.exe
 
 4) The SumatraPDF-settings.txt is in the folder  ...\SumatraPDF\
 
@@ -83,8 +83,8 @@ End of readme / notes
 : First check for the required mutool support file and that filename is valid
 : if you have not placed mutool where recommended as is relative to this
 : file which was set at start then you may need to adjust both here and later
-: TL;DR this test should not be needed but for those users that dont RTFM
-if %addins%.==. set addins=%~dp0
+: TL;DR this test should not be needed but for those users that don't RTFM
+if %addins%.==. set addins=..\%~dp0
 if not exist "..\..\Utils\MuPDF\mutool.exe" echo: & echo  Either MuTool.exe or this file are not in correct location & goto HELP
 if not exist "%~f1" echo: & echo "%~dpn1%~x1" & echo  Appears NOT to exist as a valid file & goto HELP
 
