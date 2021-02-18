@@ -3,7 +3,7 @@
 Do not delete the above two lines since they are needed to prepare this script.
 
  Potted version history  v'21-02-18--01 first public release (default is -r 96 dpi)
- v'21-02-18--02 very minor edit of addins correction (..was wrong way round)
+ v'21-02-18--03 very minor edits addins (..was wrong way round..) and 1-N prefered
 
  Read Me 1st (you can strip out most of these comments in your working copy)
  Note: Later lines that start with :LETTERS are branches that need to be kept BUT
@@ -123,7 +123,7 @@ pause & exit
 if %3.==. goto RANGE
 : However, if given, lets remind user which page(s) was / were requested
 set pages=%3
-for %%R in (ALL, 1-N) do if /i %3.==%%R. set pages=ALL
+for %%R in (ALL,1-N) do if /i %3.==%%R. set pages=1-N
 echo:
 echo  Page Range requested: page(s) = %pages% & goto RUN
 
