@@ -90,7 +90,7 @@ if not exist "%~f1" echo: & echo "%~dpn1%~x1" & echo  Appears NOT to exist as a 
 
 : IF you wish to add or restrict input to only certain extensions then edit the file
 : extensions in the next line. NOTE .bmp, .jpg and .png are NOT multi-page
-for %%X in (bmp,cbz,epub,fb2,gif,jpg,oxps,pdf,png,tif,tiff,xps,zip) do IF /I NOT .%%X.==%~x1. goto ALLOWED
+for %%X in (bmp,cbz,epub,fb2,gif,jpg,oxps,pdf,png,tif,tiff,xps,zip) do IF /I .%%X.==%~x1. goto ALLOWED
 echo  %~x1 Appears to be unacceptable & goto HELP
 
 :ALLOWED
