@@ -1,4 +1,4 @@
-@Mode 60,17 & Color 9F & Title SumatraPDF addin ExportPng [.eXt2.png(s)] v'21-02-18--02
+@Mode 60,17 & Color 9F & Title SumatraPDF addin ExportPng [.eXt2.png(s)] v'21-02-18--03
 @echo off & SetLocal EnableDelayedExpansion & pushd %~dp0 & goto MAIN
 Do not delete the above two lines since they are needed to prepare this script.
 
