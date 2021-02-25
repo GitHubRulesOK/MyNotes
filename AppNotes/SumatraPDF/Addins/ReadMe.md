@@ -15,10 +15,12 @@ ExportPNG https://github.com/GitHubRulesOK/MyNotes/tree/master/AppNotes/SumatraP
 
 A script which requires and uses MuPDF to convert a page or pages to PNG format
 
+
 RotatePDF https://github.com/GitHubRulesOK/MyNotes/tree/master/AppNotes/SumatraPDF/Addins/RotatePDF
 
 A script which requires and uses Cpdf or Qpdf (default) to permanently rotate a PDF viewed single page or pages
 
-SpdfGoTo https://github.com/GitHubRulesOK/MyNotes/tree/master/AppNotes/SumatraPDF/Addins/Search
 
-A script using requires and uses wscript (Windows default) to go to or search forward at a given page or name
+SpdfGoTo https://github.com/GitHubRulesOK/MyNotes/tree/master/AppNotes/SumatraPDF/Addins/Search
+  A script using requires and uses wscript (Windows default) to go to or search forward at a given page or name
+
