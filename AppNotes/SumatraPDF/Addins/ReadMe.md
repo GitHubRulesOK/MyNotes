@@ -23,5 +23,5 @@ SpdfGoTo	https://github.com/GitHubRulesOK/MyNotes/tree/master/AppNotes/SumatraPD
 DeleteLater	https://github.com/GitHubRulesOK/MyNotes/blob/master/AppNotes/SumatraPDF/Addins/DeleteLater.txt \
 		An ExternalViewers entry to store currently viewed filename in a list for use after a batch of files have been reviewed. 
 		
-WebSearch	https://github.com/GitHubRulesOK/MyNotes/blob/master/AppNotes/SumatraPDF/Addins/Search/WebSearch.vbs
+WebSearch	https://github.com/GitHubRulesOK/MyNotes/blob/master/AppNotes/SumatraPDF/Addins/Search/WebSearch.vbs \
 		A VB script which requires and uses wscript (Windows default) to use the selected word(s) in a browser search.
