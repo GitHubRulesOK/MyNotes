@@ -12,14 +12,16 @@ Some Addins are so small they don't need a file of their own but are written wit
 Index
 
 ExportPNG	https://github.com/GitHubRulesOK/MyNotes/tree/master/AppNotes/SumatraPDF/Addins/ExportPng \
-		A script which requires and uses MuPDF to convert a page or pages to PNG format
+		A script which requires and uses MuPDF to convert a page or pages to PNG format.
 
 RotatePDF	https://github.com/GitHubRulesOK/MyNotes/tree/master/AppNotes/SumatraPDF/Addins/RotatePDF \
-		A script which requires and uses Cpdf or Qpdf (default) to permanently rotate a PDF viewed single page or pages
+		A script which requires and uses Cpdf or Qpdf (default) to permanently rotate a PDF viewed single page or pages.
 
 SpdfGoTo	https://github.com/GitHubRulesOK/MyNotes/tree/master/AppNotes/SumatraPDF/Addins/Search \
-		A script which requires and uses wscript (Windows default) to go to or search forward at a given page or name
+		A script which requires and uses wscript (Windows default) to go to or search forward at a given page or name.
 		
 DeleteLater	https://github.com/GitHubRulesOK/MyNotes/blob/master/AppNotes/SumatraPDF/Addins/DeleteLater.txt \
-		An ExternalViewers entry to store currently viewed filename in a list for use after a batch of files have been reviewed 
-
+		An ExternalViewers entry to store currently viewed filename in a list for use after a batch of files have been reviewed. 
+		
+WebSearch	https://github.com/GitHubRulesOK/MyNotes/blob/master/AppNotes/SumatraPDF/Addins/Search/WebSearch.vbs
+		A VB script which requires and uses wscript (Windows default) to use the selected word(s) in a browser search.
