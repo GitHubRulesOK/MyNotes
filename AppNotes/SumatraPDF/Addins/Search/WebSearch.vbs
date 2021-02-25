@@ -1,4 +1,4 @@
-' Script template to paste selected word(s) in browser
+' Script template to paste selected word(s) into a chosen browser search
 ' Expects a word or more has been selected e.g. double click will select that word
 ' For multiple words you will need to overstrike, right click, and copy selection.
 '
@@ -25,12 +25,13 @@ WshShell.Sendkeys "^c"
 Set objClipboard = CreateObject("htmlfile")
 SearchString = objClipboard.ParentWindow.ClipboardData.GetData("Text")
 
-' remove the ' from start of only one of "MyBrowser" setting below or replace with your own
+' remove the ' from start of ONLY ONE of "MyBrowser" setting below or replace with your own
 'MyBrowser="C:\PortableApps\FirefoxPortable\FirefoxPortable.exe"
 'MyBrowser="C:\Program Files (x86)\Microsoft\Edge Beta\Application\msedge.exe"
+'MyBrowser="C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe" -inprivate"
 MyBrowser="C:\Program Files\Internet Explorer\iexplore.exe"
 
-' remove the ' from start of only one of "MySearch" setting below or replace with your own
+' remove the ' from start of ONLY ONE of "MySearch" setting below or replace with your own
 'MySearch="https://www.startpage.com/do/dsearch?query="
 'MySearch="https://www.google.com/search?q="
 'MySearch="https://duckduckgo.com/?q="
@@ -38,6 +39,7 @@ MyBrowser="C:\Program Files\Internet Explorer\iexplore.exe"
 'The following are for a Dictionary look-up (use with single words)
 'MySearch="https://chambers.co.uk/search/?title=21st&query="
 'MySearch="https://www.merriam-webster.com/dictionary/"
+
 ' The following are examples for translate English to français (use website address bar to see codes for other languages
 'MySearch="https://www.deepl.com/en/translator#en/fr/"
 MySearch="https://translate.google.co.uk/#view=home&op=translate&sl=auto&tl=fr&text="
