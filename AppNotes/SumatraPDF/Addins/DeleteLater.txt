@@ -1,0 +1,23 @@
+From a question on GitHub (https://github.com/sumatrapdfreader/sumatrapdf/issues/633)
+From a Request/Suggestion by Marmotian (https://github.com/Marmotian)
+
+Whilst viewing files in SumatraPDf some files can easily be deleted using CTRL + F + F + DEL
+
+However in many cases the files are "File Locked" by the windows system as "Open for reading".
+
+In these cases it is useful if the filename can be stored such as it can be deleted later
+e.g. when the viewing session is ended.
+One simple way is to export the currently viewed filename using ExternalViewers
+
+ExternalViewers [
+  [
+    CommandLine = c:\windows\system32\cmd.exe /d /c "echo @del /p "%1" >>%UserProfile%\desktop\DeleteMeList.cmd"
+    Name = Delete File &Later (after all are closed)
+    Filter = *.*
+  ]
+]
+
+If you paste the above section into SumatraPDF-settings.txt (Settings > Advanced Options)
+You can use the shortcut ALT + F + L to invoke for the currently viewed file
+
+IF you dont want the normal Console Black Flash then you would need to switch to a more complex wscript one liner (any takers ?). 
