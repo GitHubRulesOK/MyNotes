@@ -6,7 +6,7 @@
 '
 ' ExternalViewers [
 '	  [
-'		CommandLine = "C:\Windows\System32\wscript.exe" "%addins%\Search\WebSearch.vbs"
+'		CommandLine = "C:\Windows\System32\wscript.exe" "%Addins%\Search\WebSearch.vbs"
 '		Name = &Browser Search
 '		Filter = *.*
 '	  ]
@@ -15,7 +15,8 @@
 ' NOTE unlike other addins where the %addins% environment setting is supplied via cmd
 ' in this case wscript does not understand the value so you will need to edit the
 ' %addins% part to suit the location of this file in your system (not easily portable).
-' the alternative is to use cmd.exe to call wscript but then you get the usual Black Flash.
+' the portable way is to use cmd.exe to call wscript but then you get the usual Black Flash.
+' CommandLine = c:\windows\system32\cmd.exe /d /c "wscript.exe %Addins%\Search\WebSearch.vbs " <
 '
 ' Also change the sections below to suit your preferences.
 ' When added as above then you should be able to select some text e.g. double click
