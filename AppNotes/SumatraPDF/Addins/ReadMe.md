@@ -19,4 +19,7 @@ RotatePDF	https://github.com/GitHubRulesOK/MyNotes/tree/master/AppNotes/SumatraP
 
 SpdfGoTo	https://github.com/GitHubRulesOK/MyNotes/tree/master/AppNotes/SumatraPDF/Addins/Search \
 		A script which requires and uses wscript (Windows default) to go to or search forward at a given page or name
+		
+DeleteLater	https://github.com/GitHubRulesOK/MyNotes/blob/master/AppNotes/SumatraPDF/Addins/DeleteLater.txt
+		An ExternalViewers entry to store currently viewed filename in a list for use after a batch of files have been reviewed 
 
