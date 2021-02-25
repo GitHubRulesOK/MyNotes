@@ -12,7 +12,11 @@
 '	  ]
 ' ]
 '
-' NOTE you will need to edit the %addins% part to suit the location of this file.
+' NOTE unlike other addins where the %addins% environment setting is supplied via cmd
+' in this case wscript does not understand the value so you will need to edit the
+' %addins% part to suit the location of this file in your system (not easily portable).
+' the alternative is to use cmd.exe to call wscript but then you get the usual Black Flash.
+'
 ' Also change the sections below to suit your preferences.
 ' When added as above then you should be able to select some text e.g. double click
 ' a word then use shortcut ALT+F+B or file menu item "Open in Browser Search"
