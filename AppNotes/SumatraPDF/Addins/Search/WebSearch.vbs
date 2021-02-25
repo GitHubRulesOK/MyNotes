@@ -42,7 +42,8 @@ MyBrowser="C:\Program Files\Internet Explorer\iexplore.exe"
 
 ' The following are examples for translate English to français (use website address bar to see codes for other languages
 'MySearch="https://www.deepl.com/en/translator#en/fr/"
-MySearch="https://translate.google.co.uk/#view=home&op=translate&sl=auto&tl=fr&text="
+'MySearch="https://translate.google.co.uk/#view=home&op=translate&sl=auto&tl=fr&text="
+MySearch="https://www.bing.com/translator/?from=en&to=fr&text="
 
 ' ensure value is not too low otherwise commands may fail
 WScript.Sleep 10
