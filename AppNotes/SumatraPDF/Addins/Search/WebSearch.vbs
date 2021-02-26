@@ -6,7 +6,7 @@
 '
 ' ExternalViewers [
 '	  [
-'		CommandLine = "C:\Windows\System32\wscript.exe" "%Addins%\Search\WebSearch.vbs"
+'		CommandLine = "C:\Windows\System32\wscript.exe" "%Addins%\Search\WebSearch.vbs" <
 '		Name = &Browser Search
 '		Filter = *.*
 '	  ]
