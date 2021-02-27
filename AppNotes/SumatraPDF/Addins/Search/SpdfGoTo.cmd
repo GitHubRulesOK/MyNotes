@@ -1,8 +1,8 @@
-<!-- : Begin batch script SumatraPDF\Addin\Search\SpdfGoTo.cmd 2021-02-24--03
-@Mode 80,16 & Title SumatraPDF addin SpdfGoTo page or "name" v.'21-02-24--03g
+<!-- : Begin batch script SumatraPDF\Addin\Search\SpdfGoTo.cmd 2021-02-26--04
+@Mode 80,16 & Title Sumatra-PDF-addin SpdfGoTo page or "name" v.'21-02-26--04
 @echo off &Color 9F & SetLocal EnableDelayedExpansion & pushd %~dp0 &goto MAIN
- Do not delete the above 3 lines since they are needed to prepare this script.
- Note to self - inline focus not needed but mandates Title SumatraPDF addin...
+ Note to self - inline focus confused by Title SumatraPDF ad... so add hyphens
+ Do not delete the above 4 lines since they are needed to prepare this script.
  There is somewhere a better rewrite of this script, but for quick roll-out...
 
 	Use space bar for page forward	 Q or CTRL + C = Quit	? for help
@@ -164,8 +164,11 @@ echo start " " %SumatraPDF% -reuse-instance -named-dest %Target% %FileName% >%te
 IF %4.==.  call %temp%\SAFind.bat & goto XIT
 
 :GET$ assume only needed after PAGE# for now but NAME# can dribble through
+Mode 54,4
 : if -g was requested we should still have focus so store user request
-echo  %FindString%
+echo  GoTo=%FindString% after Page %Target%
+echo  Here you can add your common "search terms" to copy
+echo:
 if .%FindString%==."GetString" set /p GetString="Search For = "
 if .%FindString%==."GetString" set FindString=%GetString%
 : check there is no outstanding silly request, beware %5 may here be broken
@@ -193,12 +196,12 @@ Set xShell = Wscript.CreateObject("Wscript.Shell")
 CmdString = WScript.Arguments.Item(0)
 FileName = WScript.Arguments.Item(1)
 FindString = WScript.Arguments.Item(2)
-' Open or refocus the filename from current position
-xShell.Run  (""""+CmdString+""""+" -reuse-instance "+""""+Filename+"""")
-' Give file some time to focus (can we reduce this ?) then feed in search string
-xShell.AppActivate("SumatraPDF") : WScript.Sleep 500
+' Refocus AND/OR Open the filename from last known position
 xShell.AppActivate("SumatraPDF")
-xShell.SendKeys (""+FindString+"")
+xShell.Run  (""""+CmdString+""""+" -reuse-instance "+""""+Filename+"""")
+' Give file some time to focus (can we reduce this?) then feed in search string
+xShell.AppActivate("SumatraPDF") : WScript.Sleep 3000
+xShell.AppActivate("SumatraPDF") : xShell.SendKeys (""+FindString+"")
     </script>
   </job>
 </package>
