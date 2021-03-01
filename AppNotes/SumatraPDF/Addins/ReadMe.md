@@ -5,7 +5,8 @@ These "Addins" script files are intended to be used in a subfolder below the loc
 Unlike plugins that are preloaded and occupy resources these files are expected to be used "on demand". \
 They are written to be used independently and many can also be used as external standalone apps. \
 Since file types are often executable e.g. a.cmd they may often be flagged as viral "False Positive's". \
-You can click on the name to read them as plain text and download with a .txt extension (right click RAW and rename the source file) then once you are happy the content is not harmful, then rename them to .cmd
+You can click on the name on the left to read them as plain text and download with a .txt extension (right click RAW \
+select "Save as" and rename the source file) then if you are happy, that the content is not harmful, rename to .cmd
 
 Some Addins are so small they don't need a file folder of their own but are written with an inclusive description so you can cut and paste them into other files such as SumatraPDF-settings.txt.
 
