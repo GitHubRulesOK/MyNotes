@@ -6,7 +6,7 @@ Unlike plugins that are preloaded and occupy resources these files are expected 
 They are written to be used independently and many can also be used as external standalone apps. \
 Since file types are often executable e.g. a.cmd they may often be flagged as viral "False Positive's". \
 You can click on the name on the left to read them as plain text and download with a .txt extension (right click RAW \
-select "Save as" and rename the source file) then if you are happy, that the content is not harmful, rename to .cmd
+select "Save link as" and rename the source file). Once you are happy, that the content is not harmful, rename to .cmd
 
 Some Addins are so small they don't need a file folder of their own but are written with an inclusive description so you can cut and paste them into other files such as SumatraPDF-settings.txt.
 
