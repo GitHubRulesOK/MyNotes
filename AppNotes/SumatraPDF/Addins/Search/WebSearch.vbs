@@ -1,12 +1,13 @@
-' Script template to paste selected word(s) into a chosen browser search
+' Updated 2021-03-03 to run more reliably when used as a portable %addin% version
+' SumatraPDF Script template to paste selected word(s) into a chosen browser search
 ' Expects a word or more has been selected e.g. double click will select that word
-' For multiple words you will need to overstrike, right click, and copy selection.
+' For multiple words you need to overstrike [optionally right click & copy selection].
 '
 ' Usage:- Add to SumatraPdf-settings.txt replacing / adding to existing entry (remove the ' comment marks)
 '
 ' ExternalViewers [
 '	  [
-'		CommandLine = "C:\Windows\System32\wscript.exe" "%Addins%\Search\WebSearch.vbs" <
+'		CommandLine = "C:\Windows\System32\wscript.exe" "c:...Addins\Search\WebSearch.vbs" <
 '		Name = &Browser Search
 '		Filter = *.*
 '	  ]
@@ -14,10 +15,10 @@
 '
 ' NOTE unlike other addins where the %addins% environment setting is supplied via cmd
 ' in this case wscript does not understand that value so you will need to edit the
-' %addins% part to suit the location of this file in your system (but then not easily portable).
+' ...Addins\ part to suit the location of this file in your system (but then its less portable).
 '
 ' The portable way is to use cmd.exe to call wscript but then you get the usual console Black Flash.
-' CommandLine = c:\windows\system32\cmd.exe /d /c "Mode 15,1 & wscript.exe %Addins%\Search\WebSearch.vbs " <
+' CommandLine = c:\windows\system32\cmd.exe /d /c "Mode 15,1 & start "" "wscript" "%addins%\Search\WebSearch.vbs" "<
 ' The Black Flash is minimised with "Mode 15,1 &". It also helps if your browser is active minimised.
 '
 ' Also change the sections below to suit your browser preferences.
