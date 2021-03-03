@@ -1,0 +1,107 @@
+# NOTE # Comments will be deleted by SumatraPDF in the SumatraPDF-Settings.txt
+# file on session clean-up. Added here as reminders for cut and paste culling,
+# however, if you add the whole file worst case is some entries may not work.
+# This file could be used via Cut & Paste replacing ExternalViewers [ line(s).
+
+# NOTE :- if you backup your SumatraPDF-settings.txt and add any customisation
+# here as shown, you can then save file as & overwrite SumatraPDF-settings.txt
+# with your own preferences for the next startup, some from load 1st document.
+# You can add to, or delete these options, they are here to show posibilities.
+
+ReuseInstance = true
+FixedPageUI [
+		GradientColors = #ff0000 #ffffff #0000ff
+# dont forget to close square brackets
+]
+ShowFavorites = true
+TocDy = 500
+WindowPos = -2 0 688 768
+
+# Whilst viewing files in SumatraPDf some additional options may be visible in
+# the File Menu, so whilst viewing a PDF you may see Open in Adobe Reader or for
+# a CHM Open in Microsoft HTML Help, they are auto-detected by SumatraPDF and
+# added as viable installed ExternalViewer options. Others may include Foxit
+# (Phantom) and Tracker PDF-XChange (Editor/Viewer)
+
+# However in some cases an installed option may be missing an unusual install
+# or windows support may have changed, such as removing xps viewer.
+
+# In these cases it is possible to manually "add your own" using "ExternalViewers"
+# So a notable choice may be to "Open in Edge". So here I list some I like to add.
+
+ExternalViewers [
+
+# This first one is not much use, it is here to show what happens if you add a
+# 2nd with the same shortcut, c:\windows\system32\xpsrchvw.exe should be auto-
+# detected as "M". We can add another option "convert XPS to PDF via Print to.
+# Note: recent Win10 if the built in xps viewer wasn't installed with a system
+# refresh may need "manage optional features" then " add a feature" XPS Viewer
+	[
+		CommandLine = c:\windows\system32\xpsrchvw.exe /p "%1"
+		Name = &MS xps printer (to convert xps as searchable text use Microsoft: Print to PDF)
+		Filter = *.oxps;*.xod;*.xps
+	]
+# This alternative "M" addin is also limited unless Adobe Reader PDF ActiveX plug-in file or similar is active.
+	[
+		CommandLine = "C:\Program Files\Internet Explorer\iexplore.exe" -private "%1"
+		Name = &MS Internet Explorer [Gif movie] | [Adobe Plug-in attached / multi-find / thumbs]
+		Filter = *.gif;*.pdf;*.txt
+	]
+
+# MS Edge should be more useful, but new version does not accept ePub !
+	[
+		CommandLine = "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe" -inprivate -profile-directory=Default "%1"
+		Name = e&Dgium [Gif movie] | [Cast To / Inking / Print / Read Aloud]
+		Filter = *.gif;*.pdf;*.txt
+	]
+
+# Here is a much more useful one line command using windows native features
+	[
+		CommandLine = c:\windows\system32\cmd.exe /d /c "echo @del /p "%1" >>%UserProfile%\desktop\DeleteMeList.cmd"
+		Name = Add &Locked filename to desktop DeleteMeList (run after session is closed)
+		Filter = *.*
+	]
+
+# I like to use MuPDF-GL for comparison and Fast Form Filling,  I use cmd.exe...%addins%\..\Utils for portability.
+# If MuPDF is on C: drive use much quicker CommandLine = "C:\path to\MuPDF-GL.exe" "%1" %p
+	[
+		CommandLine = c:\windows\system32\cmd.exe /d /c "start "" "%addins%\..\Utils\MuPDF\MuPDF-GL.exe"  "%1" %p "
+		Name = M&uPDF [Annotation / Fix / Forms / ReStructure] 
+		Filter = *.*
+	]
+
+# Along with MuPDF comes MuTool so we can use that to export PNGs via a script, see source for change to range
+	[
+		CommandLine = c:\windows\system32\cmd.exe /d /c ""%addins%\ExportPng\ExportPng.cmd" "%1" page=%p"
+		Name = Save current page &Graphics to PNG 
+		Filter = *.*
+	]
+
+# A good FOSS to rotate PDF pages is QPDF and thats what I use with Alt+F+Q , see source for change to range
+	[
+		CommandLine = c:\windows\system32\cmd.exe /d /c ""%addins%\RotatePDF\Rotate.cmd" "%1" page=%p"
+		Name = &QPDF to Permanently Rotate current page
+		Filter = *.pdf
+	]
+
+# Search in current document may need adjustments to timings
+	[
+		CommandLine = c:\windows\system32\cmd.exe /d /c ""%addins%\Search\SpdfGoTo.cmd" -g="GetString" page=%p "%1" "
+		Name = &/Find from current page
+		Filter = *.*
+	]
+
+
+# Beware many ALT+F+& shortcut combinations are already used thus adding a 2nd
+# can add to confusion especialy when they may conflict with non-English ones.
+
+# Default Engish used = W O C F(x2) S [H] N P A F(x2) I M(MutualyExc.x2) E R X
+# So the above extras are ALT+F+ M(2) / M(2) / D / L / U / G / Q & "/"
+# Free= B J K T V Y Z  we can also use other basic symbol keys ` = [ ] ; ' # \ ,
+# Unless on a keypad * - + . Shifted are more dificult ¬!"£$%^&()_{}:@~|<>? 
+
+# IF you dont want the normal Console Black Flash when using cmd.exe then you
+# will need to switch to more complex wscript or one liners (any takers ?). 
+
+# Always end section with a closing square bracket
+]
