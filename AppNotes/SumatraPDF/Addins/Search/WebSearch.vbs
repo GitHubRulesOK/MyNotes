@@ -26,7 +26,7 @@
 '
 Dim WshShell
 Set WshShell = WScript.CreateObject("WScript.Shell")
-WshShell.AppActivate "SumatraPDF"
+WshShell.AppActivate "SumatraPDF.exe"
 WScript.Sleep 100
 ' Copy selected text to clipboard,  Note we do not clear current clipboard contents
 ' which can cause problems, other script examples suggest clearing clipboard first !
