@@ -1,4 +1,4 @@
-' Updated 2021-03-03 to run more reliably when used as a portable %addin% version
+' Updated 2021-03-03 to run more reliably when used as a portable %addins% version
 ' SumatraPDF Script template to paste selected word(s) into a chosen browser search
 ' Expects a word or more has been selected e.g. double click will select that word
 ' For multiple words you need to overstrike [optionally right click & copy selection].
