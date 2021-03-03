@@ -12,6 +12,9 @@ Some Addins are so small they don't need a file folder of their own but are writ
 
 Index
 
+Open In.txt	https://github.com/GitHubRulesOK/MyNotes/raw/master/AppNotes/SumatraPDF/Addins/Open%20In.txt \
+		My custom file to be saved as initial replacement SumatraPDF-settings.txt for pre-loading all these addins
+
 ExportPNG	https://github.com/GitHubRulesOK/MyNotes/tree/master/AppNotes/SumatraPDF/Addins/ExportPng \
 		A script which requires and uses MuPDF to convert a page or pages to PNG format.
 
