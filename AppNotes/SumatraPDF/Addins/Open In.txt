@@ -4,14 +4,14 @@
 # This file could be used via Cut & Paste replacing ExternalViewers [ line(s).
 
 # NOTE :- if you backup your SumatraPDF-settings.txt and add any customisation
-# here as shown, you can then save file as & overwrite SumatraPDF-settings.txt
+# here as shown, you can SAVE this file AS & OVERWRITE SumatraPDF-settings.txt
 # with your own preferences for the next startup, some from load 1st document.
-# You can add to, or delete these options, they are here to show posibilities.
 
+# You can ADD TO, OR DELETE these options, they are here to show posibilities.
 ReuseInstance = true
 FixedPageUI [
 		GradientColors = #ff0000 #ffffff #0000ff
-# dont forget to close square brackets
+# DO NOT FORGET to close square brackets
 ]
 ShowFavorites = true
 TocDy = 500
@@ -63,7 +63,7 @@ ExternalViewers [
 	]
 
 # I like to use MuPDF-GL for comparison and Fast Form Filling,  I use cmd.exe...%addins%\..\Utils for portability.
-# If MuPDF is on C: drive use much quicker CommandLine = "C:\path to\MuPDF-GL.exe" "%1" %p
+# Shortcut will be ALT+F+U If MuPDF is on C: drive use much quicker CommandLine = "C:\path to\MuPDF-GL.exe" "%1" %p
 	[
 		CommandLine = c:\windows\system32\cmd.exe /d /c "start "" "%addins%\..\Utils\MuPDF\MuPDF-GL.exe"  "%1" %p "
 		Name = M&uPDF [Annotation / Fix / Forms / ReStructure] 
@@ -84,24 +84,33 @@ ExternalViewers [
 		Filter = *.pdf
 	]
 
-# Search in current document may need adjustments to timings
+# Search in current document may need adjustments to timings, Shortcut will be ALT+F+/
 	[
 		CommandLine = c:\windows\system32\cmd.exe /d /c ""%addins%\Search\SpdfGoTo.cmd" -g="GetString" page=%p "%1" "
 		Name = &/Find from current page
 		Filter = *.*
 	]
 
+# Convert current PDF document to N-Up and view, Shortcut will be ALT+F+#
+	[
+		CommandLine = c:\windows\system32\cmd.exe /d /c ""%addins%\N-Up-PDF\N-Up-PDF.cmd" "%1" "
+		Name = Convert pdf to N-Up &# pages and view
+		Filter = *.pdf
+	]
+
+
 
 # Beware many ALT+F+& shortcut combinations are already used thus adding a 2nd
 # can add to confusion especialy when they may conflict with non-English ones.
 
-# Default Engish used = W O C F(x2) S [H] N P A F(x2) I M(MutualyExc.x2) E R X
-# So the above extras are ALT+F+ M(2) / M(2) / D / L / U / G / Q & "/"
-# Free= B J K T V Y Z  we can also use other basic symbol keys ` = [ ] ; ' # \ ,
-# Unless on a keypad * - + . Shifted are more dificult ¬!"£$%^&()_{}:@~|<>? 
+# Default Engish Keys = W O C F(x2) S [H] N P A F(x2) I M(MutualyExc.x2) E R X
+# So the above extras are ALT+F+ M(2) / M(2) / D / L / U / G / Q "/" & #
+# Free= B J K T V Y Z  we can also use other basic symbol keys ` = [ ] ; ' \ ,
+# Unless on the keypad * - + . Shifted are more dificult ¬!"£$%^&()_{}:@~|<>? 
 
 # IF you dont want the normal Console Black Flash when using cmd.exe then you
 # will need to switch to more complex wscript or one liners (any takers ?). 
 
 # Always end section with a closing square bracket
+# DO NOT FORGET to close square brackets
 ]
