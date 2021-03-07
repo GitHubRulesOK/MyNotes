@@ -17,6 +17,9 @@ Open In.txt	https://github.com/GitHubRulesOK/MyNotes/raw/master/AppNotes/Sumatra
 
 ExportPNG	https://github.com/GitHubRulesOK/MyNotes/tree/master/AppNotes/SumatraPDF/Addins/ExportPng \
 		A script which requires and uses MuPDF to convert a page or pages to PNG format.
+		
+N-Up-PDF	https://github.com/GitHubRulesOK/MyNotes/tree/master/AppNotes/SumatraPDF/Addins/N-Up-PDF \
+		A script which requires and uses nup_pdf to convert a copy of current viewed PDf to N-Up layout.
 
 RotatePDF	https://github.com/GitHubRulesOK/MyNotes/tree/master/AppNotes/SumatraPDF/Addins/RotatePDF \
 		A script which requires and uses Cpdf or Qpdf (default) to permanently rotate a PDF viewed single page or pages.
@@ -24,8 +27,9 @@ RotatePDF	https://github.com/GitHubRulesOK/MyNotes/tree/master/AppNotes/SumatraP
 SpdfGoTo	https://github.com/GitHubRulesOK/MyNotes/tree/master/AppNotes/SumatraPDF/Addins/Search \
 		A script which requires and uses wscript (Windows default) to go to or search forward at a given page or name.
 		
-DeleteLater	https://github.com/GitHubRulesOK/MyNotes/blob/master/AppNotes/SumatraPDF/Addins/DeleteLater.txt \
-		An ExternalViewers entry to store currently viewed filename in a list for use after a batch of files have been reviewed. 
-		
 WebSearch	https://github.com/GitHubRulesOK/MyNotes/blob/master/AppNotes/SumatraPDF/Addins/Search/WebSearch.vbs \
 		A VB script which requires and uses wscript (Windows default) to use the selected word(s) in a browser search.
+		
+DeleteLater	https://github.com/GitHubRulesOK/MyNotes/blob/master/AppNotes/SumatraPDF/Addins/DeleteLater.txt \
+		An ExternalViewers entry to store currently viewed filename in a list for use after a batch of files have been reviewed.
+		
