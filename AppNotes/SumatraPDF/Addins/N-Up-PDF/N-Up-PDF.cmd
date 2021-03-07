@@ -2,6 +2,12 @@
 SetLocal EnableDelayedExpansion &: Based on nup_pdf by Marcus May (C) 2005
 : Available from https://soft.rubypdf.com/software/pdf-n-up-maker
 : NOTE this file is not as well documented as to how "addins" work so for now read one of the others 
+: Suggested addition to ExternalViewers (cut and paste the next 5 lines HOWEVER REMOVE THE : symbol)
+:	[
+:		CommandLine = c:\windows\system32\cmd.exe /d /c ""%addins%\N-Up-PDF\N-Up-PDF.cmd" "%1"
+:		Name = &Make me an N-Up-PDF
+:		Filter = *.pdf
+:	]
 
 :MAIN
 if not exist "%~dp0..\..\SumatraPDF.exe" goto HELP
