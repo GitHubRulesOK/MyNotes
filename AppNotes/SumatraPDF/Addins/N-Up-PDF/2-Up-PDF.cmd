@@ -22,7 +22,7 @@ goto 2-Up-PDF
 echo: & echo  Usage:  %~n0 "path\filename", offers 2-Up a PDF as  Filename-2-Up.pdf
 echo:
 echo  Special no prompt version ONLY 2-Up but attempts to retain Bookmarks and
-echo internal links. Not for comercial use unless you license Cpdf
+echo  internal links. Not for comercial use unless you license Cpdf
 echo:
 echo  Note Landscape and Portrait pages will differ, do not use mixed.
 echo  Intended for printing. HYPERLINKS may break, SumatraPDF may still use some.
