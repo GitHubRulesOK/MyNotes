@@ -11,6 +11,7 @@ select "Save link as" and rename the source file). Once you are happy, that the 
 Some Addins are so small they don't need a file folder of their own but are written with an inclusive description so you can cut and paste them into other files such as SumatraPDF-settings.txt.
 
 Index
+-----
 
 Open In.txt \
 https://github.com/GitHubRulesOK/MyNotes/raw/master/AppNotes/SumatraPDF/Addins/Open%20In.txt \
@@ -22,19 +23,19 @@ A script which requires and uses MuPDF to convert a page or pages to PNG format.
 		
 N-Up-PDF \
 Https://github.com/GitHubRulesOK/MyNotes/tree/master/AppNotes/SumatraPDF/Addins/N-Up-PDF \
-A script which requires and uses nup_pdf to convert a copy of current viewed PDf to N-Up layout.
+A script which requires and uses nup_pdf to convert a copy of currently viewed PDF to N-Up layout e.g. 3x3 pages at a time.
 
 RotatePDF \
 https://github.com/GitHubRulesOK/MyNotes/tree/master/AppNotes/SumatraPDF/Addins/RotatePDF \
-A script which requires and uses Cpdf or Qpdf (default) to permanently rotate a PDF viewed single page or pages.
+A script which requires and uses Cpdf or Qpdf (default) to permanently rotate a viewed PDF single page or pages.
 
 SpdfGoTo \
 https://github.com/GitHubRulesOK/MyNotes/tree/master/AppNotes/SumatraPDF/Addins/Search \
-A script which requires and uses wscript (Windows default) to go to or search forward at a given page or name.
+A script which requires and uses wscript (Windows default) to Go To or search forward at / from a given page or name.
 		
 WebSearch \
 https://github.com/GitHubRulesOK/MyNotes/blob/master/AppNotes/SumatraPDF/Addins/Search/WebSearch.vbs \
-A VB script which requires and uses wscript (Windows default) to use the selected word(s) in a browser search.
+A VB script which requires and uses wscript (Windows default) to use the selected word(s) within a browser search.
 		
 DeleteLater \
 https://github.com/GitHubRulesOK/MyNotes/blob/master/AppNotes/SumatraPDF/Addins/DeleteLater.txt \
