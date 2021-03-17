@@ -1,4 +1,4 @@
-@ echo off & echo  & Mode 82,18 & color E0 & Title SumatraPDF-Addin N-Up-PDF v'21-03-17--03
+@ echo off & echo  & Mode 82,18 & color E0 & Title SumatraPDF-Addin N-Up-PDF v'21-03-17--04
 SetLocal EnableDelayedExpansion & goto MAIN
 
  Based on nup_pdf by Marcus May (C) 2005
@@ -11,7 +11,9 @@ SetLocal EnableDelayedExpansion & goto MAIN
 
  Nup_pdf.exe is available from https://soft.rubypdf.com/software/pdf-n-up-maker
 
- NOTE this file is not as well documented as to how "addins" work so for now read one of the others 
+ NOTE this file is not as well documented as to how "addins" work so for now read one of the others
+ If your system does not have %addins% defined you need to change CommandLine
+ to reflect the actual location such as ""D:\Portable\SumatraPDF\Addins\N-Up.......... 
  
  Suggested addin to SumatraPDF-settings.txt ExternalViewers section
  cut and paste the following lines, watch out for the [ ] pairs
@@ -27,8 +29,9 @@ ExternalViewers [
  Note above Shortcut will be ALT+F+#
 
 :MAIN
+if %Addins%.==. set Addins=%~dp0..
+
 if not exist "%~dp0..\..\SumatraPDF.exe" goto HELP
-if not exist "%~dp0..\..\SumatraPDF-settings.txt" goto HELP
 if not exist "%~dp0..\..\Utils\N-Up-PDF\nup_pdf.exe" goto HELP
 if not exist "%~dpn1.pdf" goto HELP
 
@@ -58,7 +61,6 @@ for %%i in (2,4,8,9,16,25,32) do if /i %Ratio%.==%%i. goto N-Up-PDF
 echo: & echo  Usage:  %~n0 "path\filename", offers N-Up a PDF as  Filename-#-Up-{0/1}.pdf
 echo:
 if not exist "%~dpn1.pdf" echo  "%~dpn1.pdf"  appears not to be a valid Filename.PDF & echo:
-if not exist "%~dp0..\..\SumatraPDF-settings.txt" echo  SumatraPDF-settings.txt was not found where expected. & echo:
 if not exist "%~dp0..\..\SumatraPDF.exe" echo  SumatraPDF.exe was not found where expected. & echo:
 if not exist "%~dp0..\..\Utils\N-Up-PDF\nup_pdf.exe" echo  nup_pdf.exe was not found where expected. & echo:
 echo: & pause & exit /b
@@ -78,5 +80,5 @@ copy /Y %windir%\temp\NUPtemp2.pdf "%~dpn1-%ratio%-Up-%Book%.pdf"
 : Tidy up 2 temporary files
 del %windir%\temp\NUPtemp*.pdf
 
-echo: & start "" "%addins%\..\SumatraPDF.exe" -reuse-instance "%~dpn1-%ratio%-Up-%Book%.pdf"
+echo: & start "" "%~dp0..\..\SumatraPDF.exe" -reuse-instance "%~dpn1-%ratio%-Up-%Book%.pdf"
 echo: & timeout /t 8
