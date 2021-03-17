@@ -1,15 +1,30 @@
-@ echo off & echo  & Mode 82,18 & color E0 & Title SumatraPDF-Addin N-Up-PDF v'21-03-07--02
-SetLocal EnableDelayedExpansion &: Based on nup_pdf by Marcus May (C) 2005
-: Available from https://soft.rubypdf.com/software/pdf-n-up-maker
-: NOTE this file is not as well documented as to how "addins" work so for now read one of the others 
-: Suggested addition to ExternalViewers (cut and paste the next 5 lines HOWEVER REMOVE THE : symbol)
-:	[
-:		CommandLine = c:\windows\system32\cmd.exe /d /c ""%addins%\N-Up-PDF\N-Up-PDF.cmd" "%1" "
-:		Name = Convert pdf to N-Up &# pages and view
-:		Filter = *.pdf
-:	]
+@ echo off & echo  & Mode 82,18 & color E0 & Title SumatraPDF-Addin N-Up-PDF v'21-03-17--03
+SetLocal EnableDelayedExpansion & goto MAIN
 
-: Note above Shortcut will be ALT+F+#
+ Based on nup_pdf by Marcus May (C) 2005
+
+ NOTE nup_pdf.exe has problems with non-latin paths\filenames as spotted by
+ Stanislav (@Stars), so needs an added work-around via a temporary file, still
+ a problem as %temp% could be %LOCALAPPDATA%\temp with non latin characters.
+ The best solution is to attempt using %windir%\temp as may be less probematic.
+ Admin users should not encounter any UAC limitations, but others may?
+
+ Nup_pdf.exe is available from https://soft.rubypdf.com/software/pdf-n-up-maker
+
+ NOTE this file is not as well documented as to how "addins" work so for now read one of the others 
+ 
+ Suggested addin to SumatraPDF-settings.txt ExternalViewers section
+ cut and paste the following lines, watch out for the [ ] pairs
+
+ExternalViewers [
+	[
+		CommandLine = c:\windows\system32\cmd.exe /d /c ""%addins%\N-Up-PDF\N-Up-PDF.cmd" "%1" "
+		Name = Convert pdf to N-Up &# pages and view
+		Filter = *.pdf
+	]
+]
+
+ Note above Shortcut will be ALT+F+#
 
 :MAIN
 if not exist "%~dp0..\..\SumatraPDF.exe" goto HELP
@@ -50,7 +65,18 @@ echo: & pause & exit /b
 
 :N-Up-PDF
 echo: & echo   Processing %1 as %Ratio%-Up Booklet=%Book%
-echo: & "%~dp0..\..\Utils\N-Up-PDF\nup_pdf" "%~dpn1.pdf" "%~dpn1-%ratio%-Up-%Book%.pdf" %Ratio% -k %Book% >nul
-echo: & echo  You can IGNORE THE WARNING since we are not using GNU security
+
+: Workaround for filename/path issues
+set SourceFile="%~dpn1.pdf"
+copy /Y %SourceFile% %windir%\temp\NUPtemp1.pdf
+
+echo: & "%~dp0..\..\Utils\N-Up-PDF\nup_pdf" "%windir%\temp\NUPtemp1.pdf" "%windir%\temp\NUPtemp2.pdf" %Ratio% -k %Book% >nul
+echo: & echo  IGNORE "WARNING could not properly read security provider files:"
+echo  Since we are not using GNU security
+copy /Y %windir%\temp\NUPtemp2.pdf "%~dpn1-%ratio%-Up-%Book%.pdf"
+
+: Tidy up 2 temporary files
+del %windir%\temp\NUPtemp*.pdf
+
 echo: & start "" "%addins%\..\SumatraPDF.exe" -reuse-instance "%~dpn1-%ratio%-Up-%Book%.pdf"
 echo: & timeout /t 8
