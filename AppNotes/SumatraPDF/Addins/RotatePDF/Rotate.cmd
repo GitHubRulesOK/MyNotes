@@ -1,10 +1,11 @@
-@Mode 60,16 & Color 9F & Title SumatraPDF addin Rotate PDF page(s) v'21-02-07
+@Mode 60,17 & Color 9F & Title SumatraPDF addin Rotate PDF page(s) v'21-02-18
 @echo off & SetLocal EnableDelayedExpansion & pushd %~dp0 & goto MAIN
 Do not delete the above two lines since they are needed to prepare this script.
 
 Potted version history
  v'21-02-07 improved -backup logic, added progress indicator, improved messages
    and Qpdf options to work compatible with Cpdf, e.g. changed +270 to 270.
+ v'21-02-18 improved error message
 
 Read Me 1st (you can strip out most of these comments in your working copy)
 Note: Later lines that start with :LETTERS are branches that need to be kept BUT
@@ -172,10 +173,11 @@ echo:
 echo  Rotating page(s)=%pages% by %rot% degrees clockwise
 echo:
 
-REM was  "..\..\Utils\Qpdf\bin\qpdf.exe" --rotate=+%rot%:%pages% "%~dpn1.bak" "%~dpn1.pdf"
+if not exist "..\..\Utils\Qpdf\bin\qpdf.exe" echo  ERROR qpdf not in the correct location & goto HELP
 "..\..\Utils\Qpdf\bin\qpdf.exe" --rotate=+%rot%:%pages% "%~dpn1.pdf" --progress --replace-input
 
-: for Cpdf usage comment the above qpdf line and uncomment the next by deleting REMark
+: for Cpdf usage comment the above 2 qpdf lines and uncomment the next by deleting REMark
+REM if not exist "..\..\Utils\Cpdf\cpdf.exe" echo  ERROR cpdf not in the correct location & goto HELP
 REM "..\..\Utils\Cpdf\cpdf.exe" -rotateby %rot% -i "%~dpn1.pdf" %pages% -o "%~dpn1.pdf"
 
 echo:
