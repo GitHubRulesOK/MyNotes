@@ -1,4 +1,4 @@
-@ echo off & echo  & Mode 82,18 & color E0 & Title SumatraPDF-Addin N-Up-PDF v'21-03-17--04
+@ echo off & echo  & Mode 82,18 & color E0 & Title SumatraPDF-Addin N-Up-PDF v'21-03-18--05
 SetLocal EnableDelayedExpansion & goto MAIN
 
  Based on nup_pdf by Marcus May (C) 2005
@@ -6,8 +6,15 @@ SetLocal EnableDelayedExpansion & goto MAIN
  NOTE nup_pdf.exe has problems with non-latin paths\filenames as spotted by
  Stanislav (@Stars), so needs an added work-around via a temporary file, still
  a problem as %temp% could be %LOCALAPPDATA%\temp with non latin characters.
- The best solution is to attempt using %windir%\temp as may be less probematic.
+ The best solution is to attempt using %windir%\temp as may be less problematic.
  Admin users should not encounter any UAC limitations, but others may?
+
+ Known problem
+ CMD scriptlets will usually work well on both fixed & USB Plugin NTFS drives
+ with most Unicoded folders and filenames, HOWEVER, When run from a USB FAT32
+ format drive there can be problems working with Unicode filenames, especially
+ files from Fat32 or other non NTFS partitions. In those cases I can't find a
+ good workaround since CMD processing in some locales seems to be the problem.
 
  Nup_pdf.exe is available from https://soft.rubypdf.com/software/pdf-n-up-maker
 
