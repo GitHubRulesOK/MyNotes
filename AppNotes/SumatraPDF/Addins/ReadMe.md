@@ -23,7 +23,8 @@ A script which requires and uses MuPDF to convert a page or pages to PNG format.
 		
 N-Up-PDF \
 Https://github.com/GitHubRulesOK/MyNotes/tree/master/AppNotes/SumatraPDF/Addins/N-Up-PDF \
-A script which requires and uses nup_pdf to convert a copy of currently viewed PDF to N-Up layout e.g. 3x3 pages at a time.
+A script which requires and uses nup_pdf to convert a copy of currently viewed PDF to N-Up layout e.g. 3x3 pages at a time.\
+Also alternative 2-Up and 4-up "No questions" versions using cpdf which preserves bookmarks and some hyperlinks.
 
 RotatePDF \
 https://github.com/GitHubRulesOK/MyNotes/tree/master/AppNotes/SumatraPDF/Addins/RotatePDF \
