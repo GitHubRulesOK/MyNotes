@@ -1,11 +1,11 @@
-@Mode 60,17 & Color 9F & Title SumatraPDF addin Rotate PDF page(s) v'21-02-18
+@Mode 60,17 & Color 9F & Title SumatraPDF addin Rotate PDF page(s) v'21-03-18
 @echo off & SetLocal EnableDelayedExpansion & pushd %~dp0 & goto MAIN
 Do not delete the above two lines since they are needed to prepare this script.
 
 Potted version history
  v'21-02-07 improved -backup logic, added progress indicator, improved messages
    and Qpdf options to work compatible with Cpdf, e.g. changed +270 to 270.
- v'21-02-18 improved error message
+ v'21-03-18 improved error message
 
 Read Me 1st (you can strip out most of these comments in your working copy)
 Note: Later lines that start with :LETTERS are branches that need to be kept BUT
