@@ -15,7 +15,8 @@ echo  You could also use SumatraPDF "File Open" command to do the same however t
 echo  temporary cached entries may be flushed, here you can edit this file to save
 echo  to another folder (other than your default %USERPROFILE%\Downloads)
 echo:
-echo  BEWARE this download will overwrite any similar named file in the directory.
+echo  BEWARE only use with files you know have been virus checked or known as safe
+echo  and this download could overwrite any similar named file in target directory.
 echo:
 
 :loop
