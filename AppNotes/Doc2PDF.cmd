@@ -1,5 +1,5 @@
 @echo off & goto MAIN
- From https://forum.sumatrapdfreader.org/t/support-for-ms-office-file-formats/3277/4
+ From https://forum.sumatrapdfreader.org/t/support-for-ms-office-file-formats-e-g-doc-docx-etc/3277
 
  Convert .Doc(x), .ODT, .RTF or .Txt to PDF & open them in SumatraPDF
  Using FileName PrinterName [ DriverName [ PortName ] ])
