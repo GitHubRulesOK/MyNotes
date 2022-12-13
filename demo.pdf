@@ -13,7 +13,7 @@ q
 BT /F1 20 Tf 072 740 Td (20 units (default units usually = pts) high Headline) Tj ET
 BT /F1 16 Tf 036 700 Td (All text is "Body" text. (no heads or tails)) Tj ET
 BT /F1 10 Tf 004 780 Td (Text can be any order see "Body" text above. (Printed by Filename="C:\Users\K\Downloads\MAKE-PDF.cmd") spot the escape errors) Tj ET
-BT /F1 12 Tf 036 675 Td (Here @ 12 units high you must include just enough text for parts of a line. PDF has no page feeds no wrapping,) Tj 0 -20 Td (nor \n line feed, no paragraphs) Tj 36 -20 Td (nor carriage \r return. \n\r         It is not tabular, each page is one row of multiple pages,) Tj 200 -20 Td (each   page   is   one   text   column   wide .) Tj 0 -10 Td (each   page   is   one   text   column   wide .) Tj ET
+BT /F1 12 Tf 036 675 Td (Here @ 12 units high you must include just enough text for parts of a line. PDF has no page feeds no wrapping,) Tj 0 -20 Td (nor \n line feed, no paragraphs) Tj 36 -20 Td (nor carriage \r return. \n\r         It is not tabular, each page is one row of multiple pages,) Tj 200 -20 Td (ea)Tj(c)Tj (h   page   is   on)Tj ( a   row   and   is   on) (e   text   co) Tj (lumn   wide .) Tj 0 -10 Td (each   page   is   one   text   column   wide .) Tj ET
 Q
 
 endstream
@@ -28,5 +28,5 @@ xref
 
 trailer<</Size 5/Root 1 0 R>>
 startxref
-1003
+1122
 %%EOF
