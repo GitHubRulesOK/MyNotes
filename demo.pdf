@@ -1,55 +1,115 @@
 %PDF-1.0
-%µ¶µ¶
-
+%âãÏÓ
+%01) Prepare file references
 1 0 obj
-<</Type/Catalog/Pages 2 0 R>>
+<</Names<</Dests 2 0 R>>/Outlines 3 0 R
+/Pages 4 0 R/Type/Catalog/ViewerPreferences<</DisplayDocTitle true>>>>
 endobj
-
+%02) Prepare Named Destinations
 2 0 obj
-<</Type/Pages/Count 1/Kids[3 0 R]>>
+<</Names [(Page1) [5 0 R /XYZ 0 792 null]]>>
 endobj
-
+%03) Prepare Outline / Bookmarks
 3 0 obj
-<</Type/Page/Parent 2 0 R/MediaBox [0 0 594 792]/Resources<</Font<< /F1 4 0 R /F2 5 0 R>>>>/Contents 6 0 R>>
+<</Count 2/First 6 0 R/Last 7 0 R>>
 endobj
-
+%04) Prepare a number of Pages
 4 0 obj
-<</Type/Font/Subtype/Type1/BaseFont/Helvetica>>
+<</Count 1/Kids[5 0 R]/Type/Pages>>
 endobj
-
+%05) Prepare Page=0 
 5 0 obj
-<</Type/Font/Subtype/Type1/BaseFont/Symbol>>
+<</Contents 8 0 R/MediaBox [0 0 594 792]/Parent 4 0 R
+/Resources<</Font<</F1 10 0 R /F2 11 0 R /F3 12 0 R /F4 13 0 R>>/XObject<</Img0 14 0 R>>>>/Rotate 0/Type/Page>>
 endobj
-
-%%Comment the following /Length 0999 is a dummy value it should be altered to equal decimal stream length, but most readers will ignore or work around invalid
+%06) Outline / Bookmark entry 1 
 6 0 obj
-<</Length 0999>>
+<</A <</D [5 0 R /XYZ 0 792 null]/S/GoTo>>
+/C [1 0 0]/F 1/Parent 3 0 R/Next 7 0 R/Title (All text is "Body" text.)>>
+endobj
+%07) Outline / Bookmark entry 2 
+7 0 obj
+<</A <</D [5 0 R /XYZ 90 288 2]/S/GoTo>>
+/C [0 0 1]/F 1/Parent 3 0 R/Prev 6 0 R/Title (Hello World)>>
+endobj
+%08) Content of Page0
+8 0 obj
+<</Length 9 0 R>>
 stream
 q
-BT /F1 20 Tf 072 740 Td (20 units (default units usually = pts) high Headline) Tj ET
-BT /F1 16 Tf 036 700 Td (All text is "Body" text. (no heads or tails)) Tj ET
-BT /F1 10 Tf 004 780 Td (Text can be any order see "Body" text above. (Printed by Filename="C:\Users\K\Downloads\Programming\CMDaPDF\MAKE-PDF.cmd") spot the escape errors) Tj ET
-BT /F1 12 Tf 036 675 Td (Here @ 12 units high you must include just enough text for parts of a line. PDF has no page feeds no wrapping,) Tj 0 -20 Td (nor \\new line feed, no ¶aragraphs) Tj 86 -15 Td (nor carriage \r\\return. \n\r  ) Tj 100 5 Td (       It is not \007\010\011\012\\tabular, each page is one row of multiple pages,) Tj 50 -15 Td (each   page   is   one   text   column   wide .[ ×] no yes check) Tj 0 -10 Td (each   row     is   one   text   column   wide .[x] no is yes) Tj 0 -10 Td (each   row     is   one   text   column   wide .  · bullet point OK) Tj ET
-BT +0.50 Tc -1.4 Tw 999 TL /F1 1 Tf 15 001 10. 30 200.000 440.000 Tm [(Jane A)600(usten)] TJ ET
-BT +0.50 Tc 0.00 Tw 000 TL /F2 1 Tf 15 000 000 15 200.000 430.000 Tm [(Ja)-1000(ne Austen)] TJ ET
-BT -1.20 Tc 0.00 Tw 999 TL /F2 1 Tf 15 000 000 15 200.000 420.000 Tm [(J)-1200(a)800(ne Austen)] TJ ET
-BT +0.00 Tc 0.00 Tw 000 TL /F2 1 Tf 15 000 000 15 200.000 410.000 Tm [(Jane A)100(us)-500(ten)] TJ ET
+BT /F2 20 Tf 072 740 Td (20 units \(default units usually = pts\) high Headline) Tj ET
+BT /F2 16 Tf 036 700 Td (All text is "Body" text. \(no heads or tails\)) Tj ET
+BT /F2 10 Tf 004 780 Td (Text can be any order see "Body" text above. \(Written by Filename="MAKE-PDF.cmd"\) note the escape of brackets       Page 1 of 1 ) Tj ET
+BT /F2 12 Tf 036 675 Td (Here @ 12 units high you must include just enough text for parts of a line. PDF has no page feeds no wrapping,) Tj 0 -20 Td (nor \\new line feed, no ¶aragraphs) Tj 86 -15 Td (nor carriage \r\\return. \n\r  ) Tj 100 5 Td (       It is not \007\010\011\012\\tabular, each page is one row of multiple pages,) Tj 50 -15 Td (each   page   is   one   text   column   wide .[ ×] no yes ?? check) Tj 0 -10 Td (each   row     is   one   text   column   wide .[x] no is yes) Tj 0 -10 Td (each   row     is   one   text   column   wide .  · bullet point OK) Tj ET
+%Text  cGap " "wGap N/A    Fnt      Wd Sly Slx Ht pageX.X pageY.Y                    
+BT +0.50 Tc -1.4 Tw 999 TL /F2 1 Tf 15 001 10. 30 200.000 440.000 Tm [(Jane A)600(usten)] TJ ET
+BT +0.50 Tc 0.00 Tw 000 TL /F3 1 Tf 15 000 000 15 200.000 430.000 Tm [(Ja)-1000(ne Austen)] TJ ET
+BT -1.20 Tc 0.00 Tw 999 TL /F3 1 Tf 15 000 000 15 200.000 420.000 Tm [(J)-1200(a)800(ne Austen)] TJ ET
+BT +0.00 Tc 0.00 Tw 000 TL /F3 1 Tf 15 000 000 15 200.000 410.000 Tm [(Jane A)100(us)-500(ten)] TJ ET
+q
+192 0 0 192 100 100 cm
+/Img0 Do
 Q
+Q
+q
+Q
+
 
 endstream
 endobj
-
+%09) Stream Length of Page=0 
+9 0 obj
+<<
+/Length 1457
+>>
+endobj
+%10-13) Prepare Fonts
+10 0 obj
+<</Type/Font/Subtype/Type1/BaseFont/Courier>>
+endobj
+11 0 obj
+<</Type/Font/Subtype/Type1/BaseFont/Helvetica>>
+endobj
+12 0 obj
+<</Type/Font/Subtype/Type1/BaseFont/Symbol>>
+endobj
+13 0 obj
+<</Type/Font/Subtype/Type1/BaseFont/Zapfdingbats>>
+endobj
+%14) Prepare Image(s)
+14 0 obj
+<</Length 320/Type/XObject/Subtype/Image/Width 27/Height 27/BitsPerComponent 8/ColorSpace/DeviceRGB/Filter[/ASCIIHexDecode/FlateDecode]>>
+stream
+789ce5924b1280300843bdffa5ebcee9e447ecb62c1cace491826bdd1b8f8aef 
+d39e844a00ca1387cd5aee1e08a1b2291b2f7ee0d0356a80bf3c07ed2e84ddc9 
+67b3e51c0742e90d38c1760364491e0b0365c2afcc6fae0fb96c976972747002 
+0ea581d2ad9c55e68481bba93ac3ae9d5bee520b0a576395ac194d0620cbc715 
+8f4070cb8903ba167cbbd1a4d8b1ff2d4b9397c40bdffcd373> 
+endstream
+endobj
+%Index Content of Above
 xref
-0 7 
+0 15 
 0000000000 65535 f
-0000000019 00000 n
-0000000069 00000 n
-0000000125 00000 n
-0000000254 00000 n
-0000000322 00000 n
-0000000547 00000 n
-
-trailer<</Size 7/Root 1 0 R>>
+0000000047 00000 n
+0000000210 00000 n
+0000000307 00000 n
+0000000393 00000 n
+0000000469 00000 n
+0000000688 00000 n
+0000000858 00000 n
+0000001002 00000 n
+0000002545 00000 n
+0000002607 00000 n
+0000002672 00000 n
+0000002739 00000 n
+0000002803 00000 n
+0000002896 00000 n
+trailer
+<<
+/Root 1 0 R/Size 15/ID [<416E20556E6976657273616C6C792055><6E69717565204944656E746966696572>]
+/Info<</Producer (MAKE-PDF.cmd)/CreationDate<443A3230323330323238303030303030>/Title (Demonstration)>>
+>>
 startxref
-1933
+3419
 %%EOF
