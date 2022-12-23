@@ -201,22 +201,3 @@ echo %%%%EOF>>!Fname!
 
 REM Post Processing Options
 start "Demo" !Fname!
-
-REM 3 0 obj
-REM <</Names[(file.exe)4 0 R(file.ext)5 0 R]>>
-REM endobj
-REM 4 0 obj
-REM <</EF<</F 7 0 R>>/F(demo Copy \(2\) file.exe)/Type/Filespec/UF(demo Copy \(2\) file.exe)>>
-REM endobj
-REM 5 0 obj
-REM <</EF 8 0 R/F(!Fname!.file.exe)/Type/Filespec/UF(!Fname!.file.ext)>>
-REM endobj
-REM 7 0 obj
-REM <</DL 10720/Subtype/text#2Fhtml/Length 0/Params<</CheckSum<4A3BCCA2FA705656CF452DEDC42E0461>/ModDate(D:20221218163335Z)/Size REM 10720>>>>
-REM stream
-REM endstream
-REM endobj
-REM 8 0 obj
-REM <</F null>>
-REM endobj
-
