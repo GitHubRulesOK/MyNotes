@@ -1,40 +1,48 @@
-%PDF-1.0
+%PDF-1.3 
 %‚„œ”
 %01) Prepare file references
 1 0 obj
-<</Names<</Dests 2 0 R>>/Outlines 3 0 R
-/Pages 4 0 R/Type/Catalog/ViewerPreferences<</DisplayDocTitle true>>>>
+<</Lang(ga-IE)/Names<</Dests 3 0 R>>/Outlines 4 0 R/PageLayout/OneColumn/PageMode/UseOutlines
+/PageLabels<</Nums[0<</S/A>>]>>/Pages 5 0 R/Type/Catalog/ViewerPreferences<</DisplayDocTitle true>>>>
 endobj
-%02) Prepare Named Destinations
+%02) Reserved for big meta data
 2 0 obj
-<</Names [(Page1) [5 0 R /XYZ 0 792 null]]>>
+<< >>
 endobj
-%03) Prepare Outline / Bookmarks
+%03) Prepare Named Destinations
 3 0 obj
-<</Count 2/First 6 0 R/Last 7 0 R>>
+<</Names [(Page1) [6 0 R /XYZ 0 792 null] (QRCode) [6 0 R /XYZ 25.0 317.0 1]]>>
 endobj
-%04) Prepare a number of Pages
+%04) Prepare Outline / Bookmarks
 4 0 obj
-<</Count 1/Kids[5 0 R]/Type/Pages>>
+<</Count 2/First 7 0 R/Last 9 0 R>>
 endobj
-%05) Prepare Page=0 
+%05) Prepare a number of Pages
 5 0 obj
-<</Contents 8 0 R/MediaBox [0 0 594 792]/Parent 4 0 R
-/Resources<</Font<</F1 10 0 R /F2 11 0 R /F3 12 0 R /F4 13 0 R>>/XObject<</Img0 14 0 R>>>>/Rotate 0/Type/Page>>
+<</Count 1/Kids[6 0 R]/Type/Pages>>
 endobj
-%06) Outline / Bookmark entry 1 
+%06) Prepare Page=0 
 6 0 obj
-<</A <</D [5 0 R /XYZ 0 792 null]/S/GoTo>>
-/C [1 0 0]/F 1/Parent 3 0 R/Next 7 0 R/Title (All text is "Body" text.)>>
+<</Contents 10 0 R/MediaBox [0 0 594 792]/Parent 5 0 R
+/Resources<</Font<</F1 12 0 R /F2 13 0 R /F3 14 0 R /F4 15 0 R>>/XObject<</Img0 16 0 R>>>>/Rotate 0/Type/Page/Annots[17 0 R]>>
 endobj
-%07) Outline / Bookmark entry 2 
+%Note objects do not need to be in order here is 9 before 7 & 8 could as easily be 1 0obj or last no problem
+%09) Outline / Bookmark entry 3 
+9 0 obj
+<</A<</D [6 0 R /FitR 90 90 300 300]/S/GoTo>>/C[0 0 1]/F 3/Parent 4 0 R/Prev 7 0 R/Title(Hello World\041)>>
+endobj
+%07) Outline / Bookmark entry 1 
 7 0 obj
-<</A <</D [5 0 R /XYZ 90 288 2]/S/GoTo>>
-/C [0 0 1]/F 1/Parent 3 0 R/Prev 6 0 R/Title (Hello World)>>
+<</A<</D [6 0 R /XYZ 0 740 2]/S/GoTo>>
+/C [1 0 0]/F 1/Parent 4 0 R/First 8 0 R/Last 8 0 R/Next 9 0 R/Title(All text is "Body" text.)>>
 endobj
-%08) Content of Page0
+%08) Outline / Bookmark entry 2 
 8 0 obj
-<</Length 9 0 R>>
+<</A<</D [6 0 R /XYZ 100 500.0 2.0]/S/GoTo>>/C[0 1 0]/F 2/Parent 7 0 R/Title(Jane)>>
+endobj
+%10) Content of Page=0 
+10 0 obj
+<</Length 11 0 R>>
 stream
 q
 BT /F2 20 Tf 072 740 Td (20 units \(default units usually = pts\) high Headline) Tj ET
@@ -57,27 +65,27 @@ Q
 
 endstream
 endobj
-%09) Stream Length of Page=0 
-9 0 obj
+%11) Stream Length of Page=0 
+11 0 obj
 <<
-/Length 1457
+/Length 1455
 >>
 endobj
-%10-13) Prepare Fonts
-10 0 obj
+%12-15) Prepare Fonts
+12 0 obj
 <</Type/Font/Subtype/Type1/BaseFont/Courier>>
 endobj
-11 0 obj
+13 0 obj
 <</Type/Font/Subtype/Type1/BaseFont/Helvetica>>
 endobj
-12 0 obj
+14 0 obj
 <</Type/Font/Subtype/Type1/BaseFont/Symbol>>
 endobj
-13 0 obj
+15 0 obj
 <</Type/Font/Subtype/Type1/BaseFont/Zapfdingbats>>
 endobj
-%14) Prepare Image(s)
-14 0 obj
+%16) Prepare Image(s)
+16 0 obj
 <</Length 320/Type/XObject/Subtype/Image/Width 27/Height 27/BitsPerComponent 8/ColorSpace/DeviceRGB/Filter[/ASCIIHexDecode/FlateDecode]>>
 stream
 789ce5924b1280300843bdffa5ebcee9e447ecb62c1cace491826bdd1b8f8aef 
@@ -87,29 +95,58 @@ d39e844a00ca1387cd5aee1e08a1b2291b2f7ee0d0356a80bf3c07ed2e84ddc9
 8f4070cb8903ba167cbbd1a4d8b1ff2d4b9397c40bdffcd373> 
 endstream
 endobj
+%17) Prepare Annotation(s)
+17 0 obj
+<</AP<</N 18 0 R>> /C [1 0 1] /Contents (Elipsoid) /F 4 /Type /Annot /Subtype /Circle /Subj (Oval) /Rect[184 532 284 582]/P 6 0 R/M(D:20221224020807Z) /T (Anon)  /NM (Circle1) /Filter null>>
+endobj
+%18) Draw Annotation(s)
+18 0 obj
+<<BBox [0 0 102 52] /Length 264 /Resources << >>/Subtype/Form/Type/XObject>>
+stream
+q
+1 w
+1 0 1 rg 
+234.04856 581.5 m 
+261.36836 581.5 283.54856 570.5219 283.54856 557 c 
+283.54856 543.4781 261.36836 532.5 234.04856 532.5 c 
+206.72876 532.5 184.54856 543.4781 184.54856 557 c 
+184.54856 570.5219 206.72876 581.5 234.04856 581.5 c 
+h
+s
+Q
+q
+Q
+
+
+endstream
+endobj
 %Index Content of Above
 xref
-0 15 
+0 19 
 0000000000 65535 f
-0000000047 00000 n
-0000000210 00000 n
-0000000307 00000 n
-0000000393 00000 n
-0000000469 00000 n
-0000000688 00000 n
-0000000858 00000 n
-0000001002 00000 n
-0000002545 00000 n
-0000002607 00000 n
-0000002672 00000 n
-0000002739 00000 n
-0000002803 00000 n
-0000002896 00000 n
+0000000048 00000 n
+0000000296 00000 n
+0000000353 00000 n
+0000000485 00000 n
+0000000571 00000 n
+0000000647 00000 n
+0000001152 00000 n
+0000001340 00000 n
+0000000992 00000 n
+0000001468 00000 n
+0000003013 00000 n
+0000003076 00000 n
+0000003141 00000 n
+0000003208 00000 n
+0000003272 00000 n
+0000003365 00000 n
+0000003891 00000 n
+0000004126 00000 n
 trailer
 <<
-/Root 1 0 R/Size 15/ID [<416E20556E6976657273616C6C792055><6E69717565204944656E746966696572>]
+/Root 1 0 R/Size 19/ID [<443A3230323330323238303030303030><443A3230323330323238303030303030>]
 /Info<</Producer (MAKE-PDF.cmd)/CreationDate<443A3230323330323238303030303030>/Title (Demonstration)>>
 >>
 startxref
-3419
+4540
 %%EOF
