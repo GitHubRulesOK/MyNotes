@@ -17,9 +17,9 @@ BS.WriteText("\nendstream\nendobj\n");
 var Pos1 = "000000000"+BS.Position
 BS.WriteText("5 0 obj <</Length 101>> stream\n");
 BS.WriteText("q\n1 0 0 -1 18 54 cm\n35 0 0 -36 0 36 cm\n/Img0 Do\nQ\nq\n1 0 0 -1 71 144 cm\n70 0 0 -72 0 72 cm\n/Img0 Do\nQ\n");
-BS.WriteText("\nendstream\nendobj\n");
+BS.WriteText("\nendstream\nendobj\n\n");
 var Pos2 = BS.Position
-BS.WriteText("\nxref\n0 6\n");
+BS.WriteText("xref\n0 6\n");
 BS.WriteText("0000000000 00001 f \n0000000015 00000 n \n0000000060 00000 n \n0000000111 00000 n \n0000000237 00000 n \n"+Pos1.slice(-10)+" 00000 n \n");
 BS.WriteText("\ntrailer\n<</Size 6/Info<</Producer(JScrip2pdf)>>/Root 1 0 R>>\nstartxref\n"+Pos2+"\n%%EOF\n");
 
