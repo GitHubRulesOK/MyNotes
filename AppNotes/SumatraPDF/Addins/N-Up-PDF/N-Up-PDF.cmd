@@ -16,7 +16,7 @@ SetLocal EnableDelayedExpansion & goto MAIN
  files from Fat32 or other non NTFS partitions. In those cases I can't find a
  good workaround since CMD processing in some locales seems to be the problem.
 
- Nup_pdf.exe is available from https://soft.rubypdf.com/software/pdf-n-up-maker
+ Nup_pdf.exe is available from WEB ARCHIVE search "https://soft.rubypdf.com/software/pdf-n-up-maker"
 
  NOTE this file is not as well documented as to how "addins" work so for now read one of the others
  If your system does not have %addins% defined you need to change CommandLine
