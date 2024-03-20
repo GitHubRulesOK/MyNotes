@@ -5,10 +5,6 @@ Do not delete the above two lines since they are needed to prepare this script.
  Potted version history  v'21-02-18--01 first public release (default is -r 96 dpi)
  v'21-02-18--06 very minor edits addins (..was wrong way round..) also 1-N
  is prefered and better acceptance of multiple ranges such as “6-10,12,18,21-25”
- v'24-03-20--07 very minor edits recommend use 1.20 for last known 32bit compatability
- improve file handling for "filenames with spaces" 
- * simplify to mutool be in this folder or vise versa
- Allow for current Pre-release prefers """ in cmd lines as opposed to normal "
 
  Read Me 1st (you can strip out most of these comments in your working copy)
  Note: Later lines that start with :LETTERS are branches that need to be kept BUT
@@ -24,25 +20,25 @@ Do not delete the above two lines since they are needed to prepare this script.
  TODO use a temporary copy and delete once done.
 
   Current MuPDF tools are available from https://www.mupdf.com/downloads/index.html
-  https://mupdf.com/downloads/archive/mupdf-1.20.0-windows-tesseract.zip (recommended as last known 32 bit version)
-  or https://mupdf.com/downloads/archive/mupdf-1.20.0-windows.zip (without OCR)
+  https://mupdf.com/downloads/archive/mupdf-1.18.0-windows-tesseract.zip
+  or https://mupdf.com/downloads/archive/mupdf-1.18.0-windows.zip (recommended)
 
 Methodology
 
  This script pases the current FileName and PageRange to MuPDF\MuTool.exe
- ONLY .PNG OUTput is offered (NO Jpg, but others are possible, Read the Manual)
+ ONLY .PNG OUTput is offered (NO Jpg, but others are possible, Read the Man)
  Input of many types including ePub or (o)xps and GIF/JPG/TIFF are allowed but
  no guarantee they will all be processed. Intended as an addin to SumatraPDF, but...
  When installed in the correct addins location you can right click this file and "SendTo
  Desktop as shortcut" where you can ALSO use it for drag and drop (max=ONE file)
 
- CAUTION due to reflow differences, ePub and FB2 page numbers and appearance may
+ CAUTION due to reflow differences, ePub and FB2 page numbers and appearance will
  vary wildly from MuPDF compared to those in SumatraPDF. To get a better sync (but 
  output will never be the same) you can vary font size / name in SumatraPDF-settings.txt.
 
 Presumptions (letter case should not matter, but relative positions do)
 
-1) THIS FILE (ExportPng.CMD) is located in same folder with Mutool.exe in the same folder
+1) THIS FILE (ExportPng.CMD) is located in a folder ...\SumatraPDF\Addins\ExportPng\
 2) there is an %addins% location stored OR set in the users Environment Variables
  
  A reminder about %addins% (skip this section if you have already added other "addins")
@@ -60,7 +56,7 @@ Presumptions (letter case should not matter, but relative positions do)
  Once done don't forget to select OK
  For a USB start-up batch file use something like SET addins=%~d0Apps\sumatrapdf\addins
 
-3) A recent copy of mutool.exe must be in same folder
+3) A recent copy of mutool.exe must be in ...\SumatraPDF\Utils\MuPDF\
     Note that there are additional files supplied in both of the 2 latest windows zip
     files from the download links above. However, you should ONLY need one, mutool.exe
 
@@ -68,20 +64,20 @@ Presumptions (letter case should not matter, but relative positions do)
 
 5) Most important THAT is NOT C:\Program Files\SumatraPDF\  However,
     %LOCALAPPDATA%\SumatraPDF\ or A:\PORTABLE\ folder SHOULD be ok,
-    for multi-user you would need to change addins to a common fixed location.
+    for multi-user you would need to change ..\..\Utils\ to a common fixed location.
 
 6) An entry in advanced SumatraPDF-settings.txt is needed as similar to this
 
 ExternalViewers [
 	[
-		CommandLine = c:\windows\system32\cmd.exe /c " """C:\Some one\Downloaded\Apps\SumatraPDF\Plus\ExportPng.cmd""" """%1""" page=%p "
+		CommandLine = c:\windows\system32\cmd.exe /c ""%addins%\ExportPng\ExportPng.cmd" "%1" page=%p"
 		Name = Save current page &Graphics to PNG 
 		Filter = *.*
 	]
 ]
 
  If you wish to always modify a range of pages and on occasion just single pages then 
- a) Remove the %p from the command line (remember to keep " at end e.g. """%1""" page=")
+ a) Remove the %p from the command line (remember to keep " at end e.g. %1" page=")
  b) Change in Name = from "current page" to "page range"
  alternative is to have 2 different "viewer" blocks but then you would need a second shortcut
 
@@ -94,9 +90,8 @@ End of readme / notes
 : if you have not placed mutool where recommended as is relative to this
 : file which was set at start then you may need to adjust both here and later
 : TL;DR this test should not be needed but for those users that don't RTFM
-
-if "%addins%"=="" set "addins=%~dp0"
-if not exist "%addins%mutool.exe" echo: & echo  Either MuTool.exe or this file are not in correct location & goto HELP
+if "%addins%"=="" set addins=%~dp0..
+if not exist "..\..\Utils\MuPDF\mutool.exe" echo: & echo  Either MuTool.exe or this file are not in correct location & goto HELP
 if not exist "%~f1" echo: & echo "%~dpn1%~x1" & echo  Appears NOT to exist as a valid file & goto HELP
 
 : IF you wish to add or restrict input to only certain extensions then edit the file
@@ -112,7 +107,7 @@ if %2.==. goto RANGE
 
 :HELP
 echo:
-echo  Example Usage : "%~nx0" "C:\pdfs\in.pdf" pages=2-5
+echo  Example Usage : ExportPng "C:\pdfs\in.pdf" pages=2-5
 echo:
 echo  You can specify just one single page, e.g.  Page=15  or
 echo  a range like Pages=5-10 etc.  or page=1-N (ALL pages)
@@ -122,9 +117,9 @@ echo  for other options.
 echo:
 echo  Call page without values to manually enter a page-range
 echo:
-echo  ^> "%~nx0" "C:\pdfs\in.pdf" page (Note s^&= are optional)
+echo  ^> ExportPng "C:\pdfs\in.pdf" page (Note s^&= are optional)
 echo:
-pause & exit \b
+pause & exit
 
 :PASS
 : There should be no error if the file is held open in SumatraPDF
@@ -153,7 +148,7 @@ echo:
 : IMPORTANT default for png images output is highly recommended as -r 96
 : BUT, if intended use is for OCR later, then it should be higher e.g. -r 300
 :
-"%addins%mutool.exe" draw -r 96 -o "%~dpn1-Page-%%4d.png" "%~f1" "%pages%"
+"..\..\Utils\MuPDF\mutool.exe" draw -r 96 -o "%~dpn1-Page-%%4d.png" "%~f1" "%pages%"
 echo:
 : pause
 : Optional, you can comment, change or delete timeout if not wanted (currently 5 seconds)
