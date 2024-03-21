@@ -48,17 +48,17 @@ Presumptions (letter case should not matter, but relative positions do)
  A reminder about %addins% (skip this section if you have already added other "addins")
  This cmd script is intended to be stored in a folder relative to SumatraPDF-settings.txt
  However when run, that location can be different for every user. Thus in order that multiple
- "addins" can be found together they are stored in subfolders of ...\SumatraPDF\Addins.
+ "addins" can be found together they are stored in subfolders of ...\SumatraPDF\Addins\.
  When run, the system needs to know where the addins folder is, so we need to SET a
- system-wide environment variable e.g.  SET addins=D:\location of\SumatraPDF\addins
+ system-wide environment variable e.g.  SET "addins=D:\location of\SumatraPDF\addins\"
  There is no need to add " " marks but it needs to be SET PRIOR to starting SumatraPDF.
  For many "portableapps" that function may be done as part of their start-up mechanism.
  The simplest way to set user env settings in a static system is to start Edit Env...
  and accept "Edit Environment variables for your account" where you can use Edit > New
  Variable name: (key in) addins
- Variable value: (key in or SAFER is browse directory) e.g. c:\myapps\sumatrapdf\addins
+ Variable value: (key in or SAFER is browse directory) e.g. c:\myapps\sumatrapdf\addins\
  Once done don't forget to select OK
- For a USB start-up batch file use something like SET addins=%~d0Apps\sumatrapdf\addins
+ For a USB start-up batch file use something like SET "addins=%~d0Apps\sumatrapdf\addins\"
 
 3) A recent copy of mutool.exe must be in same folder
     Note that there are additional files supplied in both of the 2 latest windows zip
