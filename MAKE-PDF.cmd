@@ -1,4 +1,4 @@
-@echo off
+@echo off & cd /d "%~dp0"
 REM History:-
 REM In the 1970s & 80s it was common to hand write printer files by various text means, I remember CP/M & Super / Visi-
 REM Calc spreadsheets and Edlin or Debug to write vector controls for plotting graphic lines in several PJLs. Then came
@@ -25,7 +25,7 @@ echo %%âãÏÓ>>!Fname!
 echo %%01) Prepare file references>>!Fname!
 for %%Z in (!Fname!) do set "FZ1=%%~zZ"
 echo 1 0 obj>>!Fname!
-echo ^<^</Names^<^</Dests 2 0 R^>^>/Outlines 3 0 R>>/PageLayout/OneColumn/PageMode/UseOutlines>>!Fname!
+echo ^<^</Names^<^</Dests 2 0 R^>^>/Outlines 3 0 R/PageLayout/OneColumn/PageMode/UseOutlines>>!Fname!
 
 REM ToDo add files
 REM /Lang (ga-IE)/MarkInfo^<^</Marked true^>^>/Names ^<^<^/EmbeddedFiles [(file.ext) 3 0 R]^>^>>>!Fname!
