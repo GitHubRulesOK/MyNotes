@@ -96,7 +96,7 @@ End of readme / notes
 : TL;DR this test should not be needed but for those users that don't RTFM
 
 if "%addins%"=="" set "addins=%~dp0"
-if not exist "%addins%mutool.exe" echo: & echo  Either MuTool.exe or this file are not in correct location & goto HELP
+if not exist "%addins%mupdf-1.20.0-windows-tesseract\mutool.exe" echo: & echo  Either MuTool.exe or this file are not in correct location & goto :mutool
 if not exist "%~f1" echo: & echo "%~dpn1%~x1" & echo  Appears NOT to exist as a valid file & goto HELP
 
 : IF you wish to add or restrict input to only certain extensions then edit the file
@@ -153,9 +153,17 @@ echo:
 : IMPORTANT default for png images output is highly recommended as -r 96
 : BUT, if intended use is for OCR later, then it should be higher e.g. -r 300
 :
-"%addins%mutool.exe" draw -r 96 -o "%~dpn1-Page-%%4d.png" "%~f1" "%pages%"
+"%addins%mupdf-1.20.0-windows-tesseract\mutool.exe" draw -r 96 -o "%~dpn1-Page-%%4d.png" "%~f1" "%pages%"
 echo:
 : pause
 : Optional, you can comment, change or delete timeout if not wanted (currently 5 seconds)
 timeout /t 5
 
+:eof
+exit /b
+
+:Download Dependencies
+:Mutool 32bit 1.20 is at mupdf-1.20.0-windows-tesseract
+curl -O https://mupdf.com/downloads/archive/mupdf-1.20.0-windows-tesseract.zip
+so 
+tar -m -xf mupdf-1.20.0-windows-tesseract.zip
