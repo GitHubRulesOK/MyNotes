@@ -1,14 +1,14 @@
-@Mode 60,17 & Color 9F & Title SumatraPDF addin ExportPng [.eXt2.png(s)] v'21-03-18--07
+@Mode 60,17 & Color 9F & Title SumatraPDF addin ExportPng [.eXt2.png(s)] v'24-11-02--08
 @echo off & SetLocal EnableDelayedExpansion & pushd %~dp0 & goto MAIN
 Do not delete the above two lines since they are needed to prepare this script.
 
  Potted version history  v'21-02-18--01 first public release (default is -r 96 dpi)
  v'21-02-18--06 very minor edits addins (..was wrong way round..) also 1-N
  is prefered and better acceptance of multiple ranges such as “6-10,12,18,21-25”
- v'24-03-20--07 very minor edits recommend use 1.20 for last known 32bit compatability
+  v'24-03-20--07 very minor edits recommend use 1.20 for last known 32bit compatability
  improve file handling for "filenames with spaces" 
  * simplify to mutool be in this folder or vise versa
- Allow for current Pre-release prefers """ in cmd lines as opposed to normal "
+ v'24-11-02--08 added mutool download link
 
  Read Me 1st (you can strip out most of these comments in your working copy)
  Note: Later lines that start with :LETTERS are branches that need to be kept BUT
@@ -25,7 +25,6 @@ Do not delete the above two lines since they are needed to prepare this script.
 
   Current MuPDF tools are available from https://www.mupdf.com/downloads/index.html
   https://mupdf.com/downloads/archive/mupdf-1.20.0-windows-tesseract.zip (recommended as last known 32 bit version)
-  or https://mupdf.com/downloads/archive/mupdf-1.20.0-windows.zip (without OCR)
 
 Methodology
 
@@ -74,14 +73,14 @@ Presumptions (letter case should not matter, but relative positions do)
 
 ExternalViewers [
 	[
-		CommandLine = c:\windows\system32\cmd.exe /c " """C:\Some one\Downloaded\Apps\SumatraPDF\Plus\ExportPng.cmd""" """%1""" page=%p "
+		CommandLine = "C:\Users\K\AppData\Local\SumatraPDF\Plus\ExportPng.cmd" "%1" page=%p
 		Name = Save current page &Graphics to PNG 
 		Filter = *.*
 	]
 ]
 
  If you wish to always modify a range of pages and on occasion just single pages then 
- a) Remove the %p from the command line (remember to keep " at end e.g. """%1""" page=")
+ a) Remove the %p from the command line (remember to keep = at end e.g. "%1" page=)
  b) Change in Name = from "current page" to "page range"
  alternative is to have 2 different "viewer" blocks but then you would need a second shortcut
 
