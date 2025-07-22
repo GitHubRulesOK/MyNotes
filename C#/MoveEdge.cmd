@@ -116,7 +116,7 @@ if (maxIndex >= 0) {
 
         Process proc = Process.Start(edgePath, input);
         proc.WaitForInputIdle();
-        Thread.Sleep(100); // Beware too soon may fail to detect loading
+        Thread.Sleep(500); // Beware too soon may fail to detect loading. My slowest device needs 10000 (10 seconds)
 
         IntPtr hwnd = IntPtr.Zero;
         EnumWindows((hWnd, lParam) => {
