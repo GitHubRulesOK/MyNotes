@@ -1,14 +1,14 @@
-##SMOP
+## SMOP
 (Small Matters Of Programming)
 ---
 "A humorous term in software development indicating that a proposed change or feature may seem simple but actually requires significant effort to implement. It often highlights the irony that what appears easy can be quite complex in reality."  
 or  
 "A piece of code, not yet written, whose anticipated length is significantly greater than its complexity. Used to refer to a program that could obviously be written, but is not worth the trouble. Also used ironically to imply that a difficult problem can be easily solved because a program can be written to do it; the irony is that it is very clear that writing such a program will be a great deal of work."  
 
-###Technically, these do not qualify as SMOPs.  
+### Technically, these do not qualify as SMOPs.  
 However these small programs have taken much time to prove or improve. So as to present simple  PoCs (Proof of Concepts) .
 
-###Windows CMD single lines
+### Windows CMD single lines
 ---
 [Beware when using redirection symbols the use of escapes or space after a #  before may be critical]
 ## Write Text (or RTF) to PDF and display result
@@ -30,6 +30,7 @@ This may seem at first a bit "niche" as my need is in SumatraPDF to use for Sync
 ```cmd
 CMD.exe /r "reg add "HKCU\Software\Microsoft\Notepad" /v fWrap /t REG_DWORD /d 0 /f >nul&echo Set s=CreateObject("WScript.Shell"):s.Run("%windir%\notepad.exe " ^& WScript.Arguments(0)):WScript.Sleep 999:s.SendKeys("%EG" ^& WScript.Arguments(1) ^& "{enter}+{end}")>%tmp%\n.vbs&cscript //nologo %tmp%\n.vbs "sync.tex" 15&&timeout 2 >nul&del %tmp%\n.vbs"
 ```
+
 
 
 
