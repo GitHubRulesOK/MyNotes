@@ -22,6 +22,12 @@ echo {\rtf1\ansi{\colortbl ;\red0\green0\blue255;}{\fonttbl{\f0\fnil Segoe Scrip
 ```
 ![Hello Image](images/RTF-hello.png)
 
+HTML
+```
+cmd /r start msedge --headless=new --no-pdf-header-footer --print-to-pdf="C:\Users\Public\Documents\out.pdf" "data:text/html,<title>Hello World PDF</title><style>@page{size:A4}</style><body>Page 1<div style=font-family:Helvetica;font-size:10mm;text-align:center;><p>Hello World!</p><p style=font-family:webdings;font-size:200px;>MTJ</p></div><div style=page-break-before:always;>Page 2</div></body>">nul 2>&1 &&(for /l %i in (1,1,9) do (@if exist "C:\Users\Public\Documents\out.pdf" start msedge --app="C:\Users\Public\Documents\out.pdf" &exit)&timeout /t 1 >nul)
+```
+![Hello Image](images/HTM-hello.png)
+
 Notepad goto line number
 ---
 This may seem at first a bit "niche" as my need is in SumatraPDF to use for Synctex Inverse Search. However if you replace "%f" with a filename and %l with a number it can be easily used for other methodologies.  
@@ -30,6 +36,11 @@ This may seem at first a bit "niche" as my need is in SumatraPDF to use for Sync
 ```cmd
 CMD.exe /r "reg add "HKCU\Software\Microsoft\Notepad" /v fWrap /t REG_DWORD /d 0 /f >nul&echo Set s=CreateObject("WScript.Shell"):s.Run("%windir%\notepad.exe " ^& WScript.Arguments(0)):WScript.Sleep 999:s.SendKeys("%EG" ^& WScript.Arguments(1) ^& "{enter}+{end}")>%tmp%\n.vbs&cscript //nologo %tmp%\n.vbs "sync.tex" 15&&timeout 2 >nul&del %tmp%\n.vbs"
 ```
+Note the 3 seconds console in the background can be reduced to a minimal flash by starting the command as:
+```
+InverseSearchCmdLine =cmd /c start "" /MIN CMD.exe /r "reg add....
+```
+But without a more dedicated shim.vbs is just a cosmetic workaround.
 
 
 
