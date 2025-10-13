@@ -53,4 +53,10 @@ I digress, what is posible in one line is a grahics WinForm, but for an RTF Edit
 ```cmd
 echo using System;using System.Media;using System.Windows.Forms;using System.Drawing;class X{static void Main(){int bounce = 0;var f=new Form(){Text="Titanic Encounter",Width=660,Height=400,BackColor=Color.Blue};var j=new Label(){Text="J",Font=new Font("Webdings",90),ForeColor=Color.Gold,AutoSize=true,Location=new Point(490,125)};var m=new Label(){Text="M",Font=new Font("Webdings",70),BackColor=Color.Blue,ForeColor=Color.Gray,AutoSize=true,Location=new Point(-10,160)};var t=new Label(){Text="T",Font=new Font("Webdings",70),ForeColor=Color.FromArgb(0,128,255),AutoSize=true,Location=new Point(500,150)};f.Controls.AddRange(new Control^[^]{j,t,m});var size=72;var x=500;var y=150;var timer=new Timer(){Interval=100};timer.Tick+=delegate{if(x^>110){x-=10;t.Location=new Point(x,y);}else if(size^>4){var player = new SoundPlayer(@"C:\Windows\Media\Windows Hardware Fail.wav");player.Play();size-=3;x-=2;y+=9;t.Font=new Font("Webdings",size);t.Location=new Point(x,y);bounce++;m.Location=new Point(-10,150+(int)(Math.Sin(bounce*0.5)*10));}else{timer.Stop();}};timer.Start();Application.Run(f);}} > x.cs && "%WINDIR%\Microsoft.NET\Framework\v4.0.30319\csc.exe" x.cs & x.exe
 ```
+## A RO FilePicker
+Sometimes we simply want in cmd to pick a file by exploring and write the chosen filename back to the console.
+```
+echo using System;using System.Windows.Forms;class P{^[STAThread^]static void Main(){var o=new OpenFileDialog();o.InitialDirectory=Environment.CurrentDirectory;o.ReadOnlyChecked=true;o.ShowReadOnly=true;if(o.ShowDialog()==DialogResult.OK)Console.WriteLine(o.FileName);}} > "%TMP%\GetFilename.cs" && "%WINDIR%\Microsoft.NET\Framework\v4.0.30319\csc.exe" /nologo /out:"%TMP%\GetFilename.exe" "%TMP%\GetFilename.cs" && del "%TMP%\GetFilename.cs"
+```
+![Hello Image](images/GetFilename.png)
 
