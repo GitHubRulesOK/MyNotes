@@ -65,7 +65,7 @@ echo using System;using System.Windows.Forms;class P{^[STAThread^]static void Ma
 ```
 
 # Ghostscript
-This is a collection of single line commands but some depend on  a spit line in a file.extension due to windows limitations.
+This is a collection of single line commands but some depend on a split line in a file.extension due to windows limitations.
 
 Take for an example Ghostscript can merge many files but windows limits how many names may be allowed on a single line. We can avoid that by using:
 ## merge files command (default)
@@ -83,5 +83,6 @@ exch put globaldict /My_working_Dict get /PageCount get 256 string globaldict /M
 2.pdf
 3.pdf
 ```
+
 
 
