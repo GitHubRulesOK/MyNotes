@@ -112,3 +112,7 @@ globaldict /My_working_Dict get dup /PageCount get 1 add /PageCount exch put glo
 true } { pop false } ifelse }
 >> setpagedevice" -f 
 ```
+Note the above asumes you no the total number first and GScould be used to combine and  OR show  number of pages for the second pass to write the text but there is a better way using an application like pdfcpu or coherent cpdf which at its most basic will look like:
+```
+cpdf -add-text "Page %Page of %EndPage" -topright 20pt -font "Helvetica" -font-size 14 in.pdf -o out.pdf
+```
