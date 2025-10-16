@@ -68,11 +68,14 @@ echo using System;using System.Windows.Forms;class P{^[STAThread^]static void Ma
 This is a collection of single line commands but some depend on a split line in a file.extension due to windows limitations.
 
 Take for an example Ghostscript can merge many files but windows limits how many names may be allowed on a single line. We can avoid that by using:
-## merge files command (default)
+## merge files command (default) Without or with text such as simple increasing numbers.
 ```
 gs -sDEVICE=pdfwrite -o merged.pdf  @filelist.txt
 ```
-Where the files are in the command file Filelist.txt (ensure any filenames with spaces are "double quoted") you only need -f if there are commands before the listed files. The nice bonus is we can add commands to add say page numbers like this @filelist.txt (72 780 is the X Y position for say top left corner from the lower left origin)
+Where the files are in the command file Filelist.txt (ensure any filenames with spaces are "double quoted") you only need -f if there are commands before the listed files. The nice bonus is we can add commands to add say page numbers like this @filelist.txt
+- /NimbusSans-Bold 12 is the style and height
+- 72 780 is the X Y position Thus near top left corner (from the lower left origin) thus any position is posible but dont expect perfect centering.
+- (Page ) is the text before the number there are no leading zer0's, no trailing text. So used as bates numbers `Exhibit A-25 - Page ` will be simple 1 to last or stamping ticket pages the numbers will expand rightwards from 1 to 10 to 100 to 1000
 ```
 -c "globaldict begin currentglobal true setglobal /My_working_Dict 10 dict def setglobal globaldict /My_working_Dict get begin /PageCount 0 def end end 
 << /EndPage { 2 ne { 0 0 0 setrgbcolor /NimbusSans-Bold 12 selectfont 72 780 moveto (Page ) show globaldict /My_working_Dict get dup /PageCount get 1 add /PageCount
@@ -86,6 +89,7 @@ If you want to try that on a folder full off pdfs just use the one line
 ```
 (for %f in (*.pdf) do @echo "%f") > filelist.txt && gs -sDEVICE=pdfwrite -o out.pdf -c "globaldict begin currentglobal true setglobal /My_working_Dict 10 dict def setglobal globaldict /My_working_Dict get begin /PageCount 0 def end end << /EndPage { 2 ne { 0 0 0 setrgbcolor /NimbusSans-Bold 12 selectfont 72 780 moveto (Page ) show globaldict /My_working_Dict get dup /PageCount get 1 add /PageCount exch put globaldict /My_working_Dict get /PageCount get 256 string globaldict /My_working_Dict get /PageCount get exch cvs show true } { pop false } ifelse } >> setpagedevice" -f @filelist.txt
 ```
+
 
 
 
