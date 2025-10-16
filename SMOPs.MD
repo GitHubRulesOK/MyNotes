@@ -73,7 +73,7 @@ Take for an example Ghostscript can merge many files but windows limits how many
 gs -sDEVICE=pdfwrite -o merged.pdf  @filelist.txt
 ```
 Where the files are in the command file Filelist.txt (ensure any filenames with spaces are "double quoted")
-The nice bonus is we can add commands to add say pagenumbers like this @filelist.txt
+The nice bonus is we can add commands to add say pagenumbers like this @filelist.txt (72 780 is the X Y position for say top left corner from the lower left origin)
 ```
 -c "globaldict begin currentglobal true setglobal /My_working_Dict 10 dict def setglobal globaldict /My_working_Dict get begin /PageCount 0 def end end 
 << /EndPage { 2 ne { 0 0 0 setrgbcolor /NimbusSans-Bold 12 selectfont 72 780 moveto (Page ) show globaldict /My_working_Dict get dup /PageCount get 1 add /PageCount
@@ -83,4 +83,5 @@ exch put globaldict /My_working_Dict get /PageCount get 256 string globaldict /M
 2.pdf
 3.pdf
 ```
+
 
