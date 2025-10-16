@@ -82,6 +82,11 @@ my1.pdf
 "number 2.pdf"
 "d:\a folder\file3.pdf"
 ```
+If you want to try that on a folder full off pdfs just use the one line
+```
+(for %f in (*.pdf) do @echo "%f") > filelist.txt && gs -sDEVICE=pdfwrite -o out.pdf -c "globaldict begin currentglobal true setglobal /My_working_Dict 10 dict def setglobal globaldict /My_working_Dict get begin /PageCount 0 def end end << /EndPage { 2 ne { 0 0 0 setrgbcolor /NimbusSans-Bold 12 selectfont 72 780 moveto (Page ) show globaldict /My_working_Dict get dup /PageCount get 1 add /PageCount exch put globaldict /My_working_Dict get /PageCount get 256 string globaldict /My_working_Dict get /PageCount get exch cvs show true } { pop false } ifelse } >> setpagedevice" -f @filelist.txt
+```
+
 
 
 
