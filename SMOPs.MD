@@ -6,7 +6,7 @@ or
 "A piece of code, not yet written, whose anticipated length is significantly greater than its complexity. Used to refer to a program that could obviously be written, but is not worth the trouble. Also used ironically to imply that a difficult problem can be easily solved because a program can be written to do it; the irony is that it is very clear that writing such a program will be a great deal of work."  
 
 ### Technically, these do not qualify as SMOPs.  
-However these small programs have taken considerable time to test and improve. So as to present simple PoCs (Proof of Concepts) .
+However these small programs have taken considerable time to test and improve. So as to present simple PoCs (Proof of Concepts).
 
 ### Single-line Windows CMD scripts
 ---
@@ -45,8 +45,8 @@ But without a more dedicated shim.vbs is just a cosmetic workaround.
 
 # Win#Exe
 ---
-Did you know Windows has the ability to write complex graphics apps (like even replace its self with a faster leaner version)?  
-I digress, what is posible in one line is a grahics WinForm, but for an RTF Editor replacement for WritePad# we would not be able to use one line.
+Did you know Windows has the ability to write complex graphics apps (like even replace itself with a faster leaner version)?  
+I digress, what is possible in one line is a graphics WinForm, but for an RTF Editor replacement for WritePad# we would not be able to use one line.
 
 ## A Titanic Application
 ![Hello Image](images/Titanic.png)
@@ -76,7 +76,7 @@ gs -q -sDEVICE=pdfwrite -o pages.pdf  @filelist.txt
 ```
 Where the files are in the **command file filelist.txt** (ensure any filenames with spaces are "double quoted") you only need `-f` if there are commands before the listed files. The nice bonus is we can add commands to add say page numbers like this @filelist.txt
 - /NimbusSans-Bold 12 is the style and height
-- 72 780 is the X Y position Thus near top left corner (from the lower left origin) thus any position is posible but dont expect perfect centering.
+- 72 780 is the X Y position Thus near top left corner (from the lower left origin) thus any position is possible but dont expect perfect centering.
 - (Page ) is the text before the number there are no leading zer0's, no trailing text. So used as bates numbers `Exhibit A-25 - Page ` will be simple 1 to last or stamping ticket pages the numbers will expand rightwards from 1 to 10 to 100 to 1000
 ```
 -c "globaldict begin currentglobal true setglobal /My_working_Dict 10 dict def setglobal globaldict /My_working_Dict get begin /PageCount 0 def end end 
@@ -87,11 +87,11 @@ my1.pdf
 "number 2.pdf"
 "d:\a folder\file3.pdf"
 ```
-If you want to try that on a folder full off pdfs just use the one line
+If you want to try that on a folder full of pdfs just use the one line
 ```
 (for %f in (*.pdf) do @echo "%f") > filelist.txt && gs -sDEVICE=pdfwrite -o out.pdf -c "globaldict begin currentglobal true setglobal /My_working_Dict 10 dict def setglobal globaldict /My_working_Dict get begin /PageCount 0 def end end << /EndPage { 2 ne { 0 0 0 setrgbcolor /NimbusSans-Bold 12 selectfont 72 780 moveto (Page ) show globaldict /My_working_Dict get dup /PageCount get 1 add /PageCount exch put globaldict /My_working_Dict get /PageCount get 256 string globaldict /My_working_Dict get /PageCount get exch cvs show true } { pop false } ifelse } >> setpagedevice" -f @filelist.txt
 ```
-For a single file dont write a list so use a command file with just the section starting `-c ... one line as above ending ... -f` call it addNumbers.txt
+For a single file do not write a list. So use a command file with just the section starting `-c ... one line as above ending ... -f` call it addNumbers.txt
 ```
 gs -q -sDEVICE=pdfwrite -o pages.pdf  @addNumbers.txt filename.pdf
 ```
@@ -116,5 +116,6 @@ Note the above assumes you know the total number first and GS could be used to c
 ```
 cpdf -add-text "Page %Page of %EndPage" -topright 20pt -font "Helvetica" -font-size 14 in.pdf -o out.pdf
 ```
+
 
 
