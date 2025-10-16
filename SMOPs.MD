@@ -66,8 +66,8 @@ echo using System;using System.Windows.Forms;class P{^[STAThread^]static void Ma
 
 # Ghostscript
 This is a collection of single line commands but some depend on a split line in a file.extension due to windows limitations.
-- Ghostscript is NOT a "file compressor" it writes NEW optimised files using compression.
-- Ghostscript is NOT a "file merging" program it writes a collection of NEW pages from one or more files pages.
+- Ghostscript is NOT a "file compressor" it writes NEW optimised files using compression. For removing encryption and adjusting compression use a PDF transformer such as cpdf or qpdf.
+- Ghostscript is NOT a "file merging" program it writes a collection of NEW pages from one or more files pages. For true merging use a PDF Transformer such as cpdf or qpdf.
 
 Take for an example Ghostscript can collate many files as new pages but windows limits how many names may be allowed on a single line. We can avoid that by using:
 ## collect files command (default) Without **or with overprinted text** such as simple increasing numbers.
@@ -116,3 +116,4 @@ Note the above asumes you no the total number first and GScould be used to combi
 ```
 cpdf -add-text "Page %Page of %EndPage" -topright 20pt -font "Helvetica" -font-size 14 in.pdf -o out.pdf
 ```
+
