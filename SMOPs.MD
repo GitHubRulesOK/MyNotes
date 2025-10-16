@@ -23,7 +23,8 @@ echo {\rtf1\ansi{\colortbl ;\red0\green0\blue255;}{\fonttbl{\f0\fnil Segoe Scrip
 ![Hello Image](images/RTF-hello.png)
 
 # HTML
-NOTE current msedge version 141 is having problems related to user folder so you need a temporary user folder as shown here  (after all runs are dune then delete that temp folder.
+**NOTE current msedge version 141 is again having problems related to user folder** so you need a temporary user folder as shown in first example
+After all runs are done then delete that temp folder using RD.
 ```
 start msedge --headless=new --log-level=3 --user-data-dir="%cd%\temp" --no-pdf-header-footer --print-to-pdf="%cd%/print.pdf" "https://example.com" >nul&&timeout 3 >nul&&echo.
 ```
@@ -120,6 +121,7 @@ Note the above assumes you know the total number first and GS could be used to c
 ```
 cpdf -add-text "Page %Page of %EndPage" -topright 20pt -font "Helvetica" -font-size 14 in.pdf -o out.pdf
 ```
+
 
 
 
