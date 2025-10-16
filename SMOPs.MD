@@ -98,3 +98,17 @@ gs -q -sDEVICE=pdfwrite -o pages.pdf  @addNumbers.txt filename.pdf
 You could include the -q and -sDEVICE in the @command file then it is as simple as `gs -o output.pdf @addNums filename.pcl` (note GS is case sensitive.)
 ![Hello Image](images/addNums.png)
 ![Hello Image](images/Page129.png)
+Postscript is a powerfull programming language and this is only a small demonstration of ability to place texxt as an overprint.
+![Hello Image](images/ExhibitA.png)
+```
+-sDEVICE=pdfwrite -c "globaldict begin currentglobal true setglobal /My_working_Dict 10 dict def setglobal globaldict /My_working_Dict get begin /PageCount 0 def end end 
+<< /EndPage { 2 ne { 
+1 0 0 setrgbcolor
+/NimbusSans-Bold 12 selectfont
+72 780 moveto 
+(Exhibit A Page ) show
+globaldict /My_working_Dict get dup /PageCount get 1 add /PageCount exch put globaldict /My_working_Dict get /PageCount get 256 string globaldict /My_working_Dict get /PageCount get exch cvs show
+( of 129) show
+true } { pop false } ifelse }
+>> setpagedevice" -f 
+```
