@@ -63,3 +63,24 @@ echo using System;using System.Windows.Forms;class P{^[STAThread^]static void Ma
 ```
 echo using System;using System.Windows.Forms;class P{^[STAThread^]static void Main(){var o=new FolderBrowserDialog();if(o.ShowDialog()==DialogResult.OK)Console.WriteLine(o.SelectedPath);}} > "%TMP%\GetFolder.cs" && "%WINDIR%\Microsoft.NET\Framework\v4.0.30319\csc.exe" /nologo /out:"%TMP%\GetFolder.exe" "%TMP%\GetFolder.cs" && del "%TMP%\GetFolder.cs"
 ```
+
+# Ghostscript
+This is a collection of single line commands but some depend on  a spit line in a file.extension due to windows limitations.
+
+Take for an example Ghostscript can merge many files but windows limits how many names may be allowed on a single line. We can avoid that by using:
+## merge files command (default)
+```
+gs -sDEVICE=pdfwrite -o merged.pdf  @filelist.txt
+```
+Where the files are in the command file Filelist.txt (ensure any filenames with spaces are "double quoted")
+The nice bonus is we can add commands to add say pagenumbers like this @filelist.txt
+```
+-c "globaldict begin currentglobal true setglobal /My_working_Dict 10 dict def setglobal globaldict /My_working_Dict get begin /PageCount 0 def end end 
+<< /EndPage { 2 ne { 0 0 0 setrgbcolor /NimbusSans-Bold 12 selectfont 72 780 moveto (Page ) show globaldict /My_working_Dict get dup /PageCount get 1 add /PageCount
+exch put globaldict /My_working_Dict get /PageCount get 256 string globaldict /My_working_Dict get /PageCount get exch cvs show true } { pop false } ifelse }
+>> setpagedevice" -f 
+1.pdf
+2.pdf
+3.pdf
+```
+
