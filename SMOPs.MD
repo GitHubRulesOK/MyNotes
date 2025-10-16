@@ -22,7 +22,11 @@ echo {\rtf1\ansi{\colortbl ;\red0\green0\blue255;}{\fonttbl{\f0\fnil Segoe Scrip
 ```
 ![Hello Image](images/RTF-hello.png)
 
-HTML
+# HTML
+NOTE current msedge version 141 is having problems related to user folder so you need a temporary user folder as shown here  (after all runs are dune then delete that temp folder.
+```
+start msedge --headless=new --log-level=3 --user-data-dir="%cd%\temp" --no-pdf-header-footer --print-to-pdf="%cd%/print.pdf" "https://example.com" >nul&&timeout 3 >nul&&echo.
+```
 ```
 cmd /r start msedge --headless=new --no-pdf-header-footer --print-to-pdf="C:\Users\Public\Documents\out.pdf" "data:text/html,<title>Hello World PDF</title><style>@page{size:A4}</style><body>Page 1<div style=font-family:Helvetica;font-size:10mm;text-align:center;><p>Hello World!</p><p style=font-family:webdings;font-size:200px;>MTJ</p></div><div style=page-break-before:always;>Page 2</div></body>">nul 2>&1 &&(for /l %i in (1,1,9) do (@if exist "C:\Users\Public\Documents\out.pdf" start msedge --app="C:\Users\Public\Documents\out.pdf" &exit)&timeout /t 1 >nul)
 ```
@@ -116,6 +120,7 @@ Note the above assumes you know the total number first and GS could be used to c
 ```
 cpdf -add-text "Page %Page of %EndPage" -topright 20pt -font "Helvetica" -font-size 14 in.pdf -o out.pdf
 ```
+
 
 
 
