@@ -1,4 +1,4 @@
-@echo off &Title Multi  Image 2 PDF C# Compile file, Version 2025-11-14-03
+@echo off &Title Multi  Image 2 PDF C# Compile file, Version 2025-11-16-04
 goto MAIN
 :README NOTES
 Open Sourced from https://github.com/GitHubRulesOK/MyNotes/blob/master/C%23/PiCs2PDF.cmd
@@ -202,9 +202,9 @@ class Program {
                 pdf.Write(jpegBytes, 0, jpegBytes.Length);
                 Write("\nendstream\nendobj\n");
             } else {
-                byte[] flateBytes = GetZlibRGB(bmp);
+                byte[] flateBytes = FlateP11(bmp);
                 positions.Add(pdf.Position);
-                Write(string.Format("{0} 0 obj <</Type/XObject/Subtype/Image/Width {1}/Height {2}/ColorSpace/DeviceRGB/BitsPerComponent 8/Filter/FlateDecode/Length {3}>>\nstream\n",
+                Write(string.Format("{0} 0 obj <</Type/XObject/Subtype/Image/Width {1}/Height {2}/ColorSpace/DeviceRGB/BitsPerComponent 8/Filter/FlateDecode/DecodeParms<</Predictor 11/Colors 3/BitsPerComponent 8/Columns {1}>>/Length {3}>>\nstream\n",
                     imgObj, imgW, imgH, flateBytes.Length));
                 pdf.Write(flateBytes, 0, flateBytes.Length);
                 Write("\nendstream\nendobj\n");
@@ -284,24 +284,36 @@ class Program {
         return x.ToString("0.#####", System.Globalization.CultureInfo.InvariantCulture);
     }
 
-    // Function /Flate compression
-    static byte[] GetZlibRGB(Bitmap bmp) {
+    // Function /Flate (Zlib compression with PNG Sub Predictor=11)
+    static byte[] FlateP11(Bitmap bmp)
+    {
         MemoryStream raw = new MemoryStream();
-        for (int y = 0; y < bmp.Height; y++) {
-            for (int x = 0; x < bmp.Width; x++) {
+        for (int y = 0; y < bmp.Height; y++)
+        {
+            // PNG requires a filter type byte at the start of each row
+            raw.WriteByte(1); // 1 = Sub filter
+            byte prevR = 0, prevG = 0, prevB = 0;
+            for (int x = 0; x < bmp.Width; x++)
+            {
                 Color c = bmp.GetPixel(x, y);
-                raw.WriteByte(c.R);
-                raw.WriteByte(c.G);
-                raw.WriteByte(c.B);
+                byte r = (byte)(c.R - prevR);
+                byte g = (byte)(c.G - prevG);
+                byte b = (byte)(c.B - prevB);
+                raw.WriteByte(r);
+                raw.WriteByte(g);
+                raw.WriteByte(b);
+                prevR = c.R;
+                prevG = c.G;
+                prevB = c.B;
             }
         }
         byte[] uncompressed = raw.ToArray();
         MemoryStream deflated = new MemoryStream();
-        deflated.WriteByte(0x78);
-        deflated.WriteByte(0x9C);
-        DeflateStream deflate = new DeflateStream(deflated, CompressionMode.Compress, true);
-        deflate.Write(uncompressed, 0, uncompressed.Length);
-        deflate.Close();
+        deflated.WriteByte(0x78); deflated.WriteByte(0x9C);
+        using (DeflateStream deflate = new DeflateStream(deflated, CompressionMode.Compress, true))
+        {
+            deflate.Write(uncompressed, 0, uncompressed.Length);
+        }
         uint adler = Adler32(uncompressed);
         deflated.WriteByte((byte)((adler >> 24) & 0xFF));
         deflated.WriteByte((byte)((adler >> 16) & 0xFF));
@@ -309,6 +321,7 @@ class Program {
         deflated.WriteByte((byte)(adler & 0xFF));
         return deflated.ToArray();
     }
+
     static uint Adler32(byte[] data) {
         const uint MOD_ADLER = 65521;
         uint a = 1, b = 0;
