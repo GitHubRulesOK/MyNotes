@@ -1,0 +1,48 @@
+<!-- Source by K J (GitHubRulesOK) 2025-10-12, Copyright (c) 2025 https://github.com/GitHubRulesOK -->
+<!DOCTYPE html>
+<html>
+<head><title>DownStream Inline PDF</title></head>
+<body>
+ <h1>Hello from PDF Stream</h1>
+ <iframe id="pdfFrame" width="100%" height="600px"></iframe>
+ <script>
+const pdfBytes =`%PDF-1.3
+1 0 obj <</Type/Catalog/Pages 2 0 R>> endobj
+2 0 obj <</Type/Pages/Kids [3 0 R]/Count 1>> endobj
+3 0 obj <</Type/Page/Parent 2 0 R/MediaBox [0 0 595 842]/Contents 4 0 R/Resources<</XObject<</QR 5 0 R>>>>>> endobj
+4 0 obj <</Length 74>>
+stream
+BT /F1 24 Tf 100 750 Td (Hello QR!) Tj ET
+q 144 0 0 144 80 600 cm /QR Do Q
+endstream
+endobj
+5 0 obj
+<</Length 320/Type/XObject/Subtype/Image/Width 27/Height 27/BitsPerComponent 8/ColorSpace/DeviceRGB/Filter[/ASCIIHexDecode/FlateDecode]>>
+stream
+789ce5924b1280300843bdffa5ebcee9e447ecb62c1cace491826bdd1b8f8aef 
+d39e844a00ca1387cd5aee1e08a1b2291b2f7ee0d0356a80bf3c07ed2e84ddc9 
+67b3e51c0742e90d38c1760364491e0b0365c2afcc6fae0fb96c976972747002 
+0ea581d2ad9c55e68481bba93ac3ae9d5bee520b0a576395ac194d0620cbc715 
+8f4070cb8903ba167cbbd1a4d8b1ff2d4b9397c40bdffcd373> 
+endstream
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000054 00000 n 
+0000000106 00000 n 
+0000000222 00000 n 
+0000000344 00000 n 
+trailer
+<</Root 1 0 R/Size 6 >>
+startxref
+831
+%%EOF
+`;
+  const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+  const url = URL.createObjectURL(blob);
+  document.getElementById('pdfFrame').src = url;
+ </script>
+</body>
+</html>
