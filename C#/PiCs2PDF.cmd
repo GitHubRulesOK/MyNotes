@@ -1,4 +1,4 @@
-@echo off &Title Multi  Image 2 PDF C# Compile file, Version 2025-11-16-04
+@echo off &Title Multi  Image 2 PDF C# Compile file, Version 2026-01-02-05
 goto MAIN
 :README NOTES
 Open Sourced from https://github.com/GitHubRulesOK/MyNotes/blob/master/C%23/PiCs2PDF.cmd
@@ -22,10 +22,11 @@ set "CSC=C:\Windows\Microsoft.NET\Framework\v4.0.30319\csc.exe"
 if not exist "%csc%" echo cannot find "%csc%" & pause & exit /b
 
 REM IMPORTANT the line number must be equal to the line containing :MORE-CS
-set "MOREline#=34"
+set "MOREline#=35"
 more +%moreLine#% "%~dpnx0" >"%~dpn0.cs"
-"%csc%" "%~dpn0.cs" >nul
-if exist "%~dpn0.exe" echo built "%~dpn0.cs"&echo   and "%~dpn0.exe"
+echo built "%~dpn0.cs"
+"%csc%" /nologo /platform:x86 "%~dpn0.cs"
+if not exist "%~dpn0.exe" (echo Compiling "%~dpn0.cs" failed & pause & exit /b)
 @color 9F&timeout -1|set /p="Hello %userprofile:~9%, you may press any key to proceed..."&color
 "%~dpn0.exe"
 exit /b
@@ -42,10 +43,10 @@ class Program {
 
     static void Main(string[] args) {
         if (args.Length < 1) {
-            Console.WriteLine("\nUsage: PiCs2PDF.exe x=Width y=Height [p=NN] o=L,T,R,B bg=RRGGBB auto=on|NN <file|folder> [output.pdf]");
-            Console.WriteLine("\nUnits: Width/Height in mm, Optionally you can use w=## and h=##. You may set one to 0 (variable) and the other is fixed");
-            Console.WriteLine("Optional: Fixed media size can be overriden using p=ppi. Margins o= and auto= are in mm.");
-            Console.WriteLine("\nExample: PiCs2PDF.exe x=210 y=297 o=10,10,10,20 bg=ffffff auto=10 images out.pdf");
+            Console.WriteLine("\n Usage: PiCs2PDF.exe x=Width y=Height [p=NN] o=L,T,R,B bg=RRGGBB auto=on|NN <file|folder> [output.pdf]");
+            Console.WriteLine("\n Units: Width/Height in mm, Optionally you can use w=## and h=##. You may set one to 0 (variable) and the other is fixed");
+            Console.WriteLine(" Optional: Fixed media size can be overriden using p=ppi. Margins o= and auto= are in mm.");
+            Console.WriteLine("\n Example: PiCs2PDF.exe x=210 y=297 o=10,10,10,20 bg=ffffff auto=10 images out.pdf");
             return;
         }
 
@@ -118,32 +119,60 @@ class Program {
         }
 
         pdf = File.Open(outputPath, FileMode.Create);
-        Write("%PDF-1.4\n");
+        // 1.5 is the lowest version allowing for JPX
+        Write("%PDF-1.5\n");
         byte[] marker = new byte[] { (byte)'%', 0xE2, 0xE3, 0xCF, 0xD3, (byte)'\n' }; // Write high-bit binary marker line
         pdf.Write(marker, 0, marker.Length); 
 
-        foreach (string file in files) {
-            string ext = Path.GetExtension(file).ToLower();
-            // We can only use single PDF viable image per page and parsable, thus we limit to those file extensions
-            if (ext != ".png" && ext != ".bmp" && ext != ".jpg" &&
-                ext != ".jpeg" && ext != ".tif" && ext != ".tiff" && ext != ".gif")
+        foreach (string file in files)
+        {
+            string ext = Path.GetExtension(file).ToLower(); // allow PDF acceptable image formats
+            if (ext != ".bmp" && ext != ".gif" && ext != ".png" && ext != ".jpg" && ext != ".jpeg" && ext != ".tif" && ext != ".tiff" &&
+                ext != ".jp2" && ext != ".j2k" && ext != ".j2c") // this line needs special handlers
             {
                 Console.WriteLine("Skipped unsupported format: " + file);
-                continue; // move on to next file
+                continue;
             }
-            Bitmap bmp;
-            try
+            // PDF does not use Resolution or Inches but we are tied to consider such for input calculations
+            float dpiX = 0; float dpiY = 0;
+            int imgW = 0; int imgH = 0;
+            Bitmap bmp = null;   // must exist outside the branch
+            // Special cases: J2C/J2K/JP2 must NOT use Bitmap
+            if (ext == ".j2c" || ext == ".j2k" || ext == ".jp2")
             {
-                bmp = new Bitmap(file);
+                if (!TryParseJpxDimensions(file, out imgW, out imgH))
+                {
+                    Console.WriteLine("Failed to read JPX dimensions: " + file);
+                    continue;
+                }
+                if (TryParseJpxResolution(file, out dpiX, out dpiY))
+                {
+                // use JPX resolution
+                }
+                else
+                {
+                // fallback DPI for JP2 with no resolution box
+                dpiX = 75; dpiY = 75;
+                }
             }
-            catch (Exception ex)
+            else
             {
-                Console.WriteLine("Failed to load image: " + file + " (" + ex.Message + ")");
-                continue; // skip this file and move on
+            // GDI Bitmap formats including normal JPeG can use Bitmap
+                try
+                {
+                    bmp = new Bitmap(file);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Failed to load image: " + file + " (" + ex.Message + ")");
+                    continue;
+                }
+                dpiX = bmp.HorizontalResolution;
+                dpiY = bmp.VerticalResolution;
+                imgW = bmp.Width;
+                imgH = bmp.Height;
             }
-            int imgW = bmp.Width;
-            int imgH = bmp.Height;
-            // Convert mm to points
+            // imgW and imgH should now be detected for all supported formats so start convert mm to points
             float pageW = MmToPt(pageWmm);
             float pageH = MmToPt(pageHmm);
             float marginLeft = MmToPt(marginLeftMm);
@@ -177,9 +206,6 @@ class Program {
                 curPageH = tmp;
                 if (autoBottomMm >= 0) curBottom = MmToPt(autoBottomMm);
             }
-            // PDF does not use Resolution or Inches but we are tied to consider such for input calculations
-            float dpiX = bmp.HorizontalResolution;
-            float dpiY = bmp.VerticalResolution;
             float workW = curPageW - marginLeft - marginRight;
             float workH = curPageH - marginTop - curBottom;
             float scaleX = workW / (imgW * 72f / dpiX);
@@ -193,13 +219,20 @@ class Program {
             int contentObj = objCount++; // This should become 2 5 8 etc.
             int pageObj = objCount++;    // This should become 3 6 9 etc.
 
-            // Define OBJ per /Image as length text integers. JPEG is always optimal DCT compression so passthrough. For others use Zip flate compression
+            // Define OBJ per /Image as length text integers. JPEG/JP2000 are optimised DCT/JPX compressions, so passthrough. For others use RGB Zip flate compression
             if (ext == ".jpg" || ext == ".jpeg") {
                 byte[] jpegBytes = File.ReadAllBytes(file);
                 positions.Add(pdf.Position);
                 Write(string.Format("{0} 0 obj <</Type/XObject/Subtype/Image/Width {1}/Height {2}/ColorSpace/DeviceRGB/BitsPerComponent 8/Filter/DCTDecode/Length {3}>>\nstream\n",
                     imgObj, imgW, imgH, jpegBytes.Length));
                 pdf.Write(jpegBytes, 0, jpegBytes.Length);
+                Write("\nendstream\nendobj\n");
+            } else if (ext == ".j2c" || ext == ".j2k" || ext == ".jp2") {
+                byte[] jpxBytes = File.ReadAllBytes(file);
+                positions.Add(pdf.Position);
+                Write(string.Format("{0} 0 obj <</Type/XObject/Subtype/Image/Width {1}/Height {2}/Filter/JPXDecode/Length {3}>>\nstream\n",
+                    imgObj, imgW, imgH, jpxBytes.Length));
+                pdf.Write(jpxBytes, 0, jpxBytes.Length);
                 Write("\nendstream\nendobj\n");
             } else {
                 byte[] flateBytes = FlateP11(bmp);
@@ -283,6 +316,218 @@ class Program {
             x = target;
         return x.ToString("0.#####", System.Globalization.CultureInfo.InvariantCulture);
     }
+
+static bool TryParseJpxDimensions(string file, out int width, out int height)
+{
+    width = 0; height = 0;
+    // Console.WriteLine("DEBUG: Enter TryParseJpxDimensions for " + file);
+    try
+    {
+        byte[] data = File.ReadAllBytes(file);
+        int len = data.Length;
+        // Console.WriteLine("DEBUG: File length = " + len);
+        // Check JP2 signature box
+        if (len > 24 &&
+            data[4] == 0x6A && data[5] == 0x50 &&
+            data[6] == 0x20 && data[7] == 0x20)
+        {
+            // Console.WriteLine("DEBUG: JP2 signature detected");
+            int pos = 0;
+            while (pos + 8 <= len)
+            {
+                uint boxLen = (uint)((data[pos] << 24) | (data[pos + 1] << 16) | (data[pos + 2] << 8) | data[pos + 3]);
+                string boxType = Encoding.ASCII.GetString(data, pos + 4, 4);
+                // Console.WriteLine("DEBUG: Box at " + pos + " type=" + boxType + " len=" + boxLen);
+                // Extended-length box (rare at top level, but handle)
+                if (boxLen == 1)
+                {
+                    // Console.WriteLine("DEBUG: Extended-length box detected");
+                    if (pos + 16 > len)
+                    {
+                        // Console.WriteLine("DEBUG: Extended-length header truncated");
+                        return false;
+                    }
+                    boxLen = (uint)((data[pos + 8] << 24) | (data[pos + 9] << 16) |
+                                    (data[pos + 10] << 8) | data[pos + 11]);
+                    // Console.WriteLine("DEBUG: Extended boxLen = " + boxLen);
+                }
+                // Box extends to EOF
+                if (boxLen == 0)
+                {
+                    // Console.WriteLine("DEBUG: Zero-length box (extends to EOF)");
+                    boxLen = (uint)(len - pos);
+                }
+                // JP2 header box: we must look inside it for ihdr
+                if (boxType == "jp2h")
+                {
+                    // Console.WriteLine("DEBUG: Entering jp2h sub-boxes");
+                    int hPos = pos + 8;
+                    int hEnd = pos + (int)boxLen;
+                    while (hPos + 8 <= hEnd && hPos + 8 <= len)
+                    {
+                        uint hLen = (uint)((data[hPos] << 24) | (data[hPos + 1] << 16) | (data[hPos + 2] << 8) | data[hPos + 3]);
+                        string hType = Encoding.ASCII.GetString(data, hPos + 4, 4);
+                        // Console.WriteLine("DEBUG: found jp2h sub-box at " + hPos + " type=" + hType + " len=" + hLen);
+                        if (hLen == 1)
+                        {
+                            // Console.WriteLine("DEBUG: Extended-length sub-box detected");
+                            if (hPos + 16 > len)
+                            {
+                                // Console.WriteLine("DEBUG: Extended-length sub-header truncated");
+                                return false;
+                            }
+                            hLen = (uint)((data[hPos + 8] << 24) | (data[hPos + 9] << 16) | (data[hPos + 10] << 8) | data[hPos + 11]);
+                            // Console.WriteLine("DEBUG: Extended sub-boxLen = " + hLen);
+                        }
+                        if (hLen == 0)
+                        {
+                            // Console.WriteLine("DEBUG: Zero-length sub-box (extends to end of jp2h)");
+                            hLen = (uint)(hEnd - hPos);
+                        }
+                        if (hType == "ihdr")
+                        {
+                            // Console.WriteLine("DEBUG: Found ihdr box");
+                            int ihdrPos = hPos + 8;
+                            if (ihdrPos + 8 > len)
+                            {
+                                // Console.WriteLine("DEBUG: ihdr truncated");
+                                return false;
+                            }
+                            height = (data[ihdrPos] << 24) | (data[ihdrPos + 1] << 16) | (data[ihdrPos + 2] << 8) | data[ihdrPos + 3];
+
+                            width = (data[ihdrPos + 4] << 24) | (data[ihdrPos + 5] << 16) | (data[ihdrPos + 6] << 8) | data[ihdrPos + 7];
+                            // Console.WriteLine("DEBUG: ihdr width=" + width + " height=" + height);
+                            return (width > 0 && height > 0);
+                        }
+                        if (hLen < 8)
+                        {
+                            // Console.WriteLine("DEBUG: Invalid sub-box length < 8");
+                            return false;
+                        }
+                        hPos += (int)hLen;
+                    }
+                    // Console.WriteLine("DEBUG: No ihdr found inside jp2h");
+                    return false;
+                }
+                if (boxLen < 8)
+                {
+                    // Console.WriteLine("DEBUG: Invalid box length < 8");
+                    return false;
+                }
+                pos += (int)boxLen;
+            }
+            // Console.WriteLine("DEBUG: Reached end of JP2 without ihdr");
+            return false;
+        }
+        // Not JP2 boxed → raw codestream (J2K/J2C)
+        // Console.WriteLine("DEBUG: Not JP2 signature, checking raw codestream");
+        int p = 0;
+        while (p + 4 < len)
+        {
+            if (data[p] == 0xFF && data[p + 1] == 0x51)
+            {
+                // Console.WriteLine("DEBUG: Found SIZ marker at " + p);
+                int sizPos = p + 4;
+                if (sizPos + 12 > len)
+                {
+                    // Console.WriteLine("DEBUG: SIZ truncated");
+                    return false;
+                }
+                height = (data[sizPos + 4] << 24) | (data[sizPos + 5] << 16) | (data[sizPos + 6] << 8) | data[sizPos + 7];
+                width = (data[sizPos + 8] << 24) | (data[sizPos + 9] << 16) | (data[sizPos + 10] << 8) | data[sizPos + 11];
+                // Console.WriteLine("DEBUG: SIZ width=" + width + " height=" + height);
+                return (width > 0 && height > 0);
+            }
+            p++;
+        }
+        // Console.WriteLine("DEBUG: No SIZ marker found");
+        return false;
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine("Warning: JP2 dimension parsing failed: " + ex.Message);
+        return false;
+    }
+}
+
+static bool TryParseJpxResolution(string file, out float dpiX, out float dpiY)
+{
+    dpiX = 0f; dpiY = 0f;
+    try
+    {
+        byte[] data = File.ReadAllBytes(file);
+        int len = data.Length;
+        // Must be JP2 boxed format
+        if (len < 32 ||
+            data[4] != 0x6A || data[5] != 0x50 ||
+            data[6] != 0x20 || data[7] != 0x20)
+        {
+            return false;
+        }
+        int pos = 0;
+        while (pos + 8 <= len)
+        {
+            uint boxLen = (uint)((data[pos] << 24) | (data[pos + 1] << 16) | (data[pos + 2] << 8) | data[pos + 3]);
+            string boxType = Encoding.ASCII.GetString(data, pos + 4, 4);
+            if (boxLen == 1)
+            {
+                if (pos + 16 > len) return false;
+                boxLen = (uint)((data[pos + 8] << 24) | (data[pos + 9] << 16) | (data[pos + 10] << 8) | data[pos + 11]);
+            }
+            if (boxLen == 0)
+                boxLen = (uint)(len - pos);
+            if (boxType == "res ")
+            {
+                int resStart = pos + 8;
+                int resEnd = pos + (int)boxLen;
+                int p = resStart;
+                while (p + 8 <= resEnd)
+                {
+                    uint subLen = (uint)((data[p] << 24) | (data[p + 1] << 16) | (data[p + 2] << 8) | data[p + 3]);
+                    string subType = Encoding.ASCII.GetString(data, p + 4, 4);
+                    if (subLen == 1)
+                    {
+                        if (p + 16 > len) break;
+                        subLen = (uint)((data[p + 8] << 24) | (data[p + 9] << 16) | (data[p + 10] << 8) | data[p + 11]);
+                    }
+                    if (subLen == 0)
+                        subLen = (uint)(resEnd - p);
+                    if (subType == "resc" || subType == "resd")
+                    {
+                        int rpos = p + 8;
+                        if (rpos + 9 > len) return false;
+                        int VRn = (data[rpos] << 8) | data[rpos + 1];
+                        int VRd = (data[rpos + 2] << 8) | data[rpos + 3];
+                        int HRn = (data[rpos + 4] << 8) | data[rpos + 5];
+                        int HRd = (data[rpos + 6] << 8) | data[rpos + 7];
+                        int E = data[rpos + 8];
+                        if (VRn > 0 && VRd > 0 && HRn > 0 && HRd > 0)
+                        {
+                            float scale = 1f;
+                            while (E > 0)
+                            {
+                                scale *= 10f;
+                                E--;
+                            }
+                            dpiX = ((float)HRn / (float)HRd) * scale;
+                            dpiY = ((float)VRn / (float)VRd) * scale;
+                        }
+                    }
+                    if (subLen < 8) break;
+                    p += (int)subLen;
+                }
+                return (dpiX > 0f && dpiY > 0f);
+            }
+            if (boxLen < 8) return false;
+            pos += (int)boxLen;
+        }
+        return false;
+    }
+    catch
+    {
+        return false;
+    }
+}
 
     // Function /Flate (Zlib compression with PNG Sub Predictor=11)
     static byte[] FlateP11(Bitmap bmp)
