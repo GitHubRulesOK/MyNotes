@@ -3,7 +3,7 @@ goto MAIN
 :README NOTES
 This CMD file is designed to produce a C# (Sharp) script for converting a folder of images into a PDF
 The primary reason is to allow FAST windows native compilation of RGB images.
-
+** NOTE IT HAS BEEN REPLACED BY PiCs2PDF which has more filetypes and functions. **
 The first run will write this filename.cs file for compiling which "should" be converted into this filname.exe
 Recommened filename for this command is Images2PDF it should be placed in a folder with subfolder of "\images"
 once you have the exe no need to run this source.cmd again but keep for adjustments
@@ -161,3 +161,4 @@ class Program {
         pdf.Write(bytes, 0, bytes.Length);
     }
 }
+
