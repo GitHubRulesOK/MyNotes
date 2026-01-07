@@ -91,6 +91,34 @@ echo using System;using System.Windows.Forms;class P{^[STAThread^]static void Ma
 ```
 echo using System;using System.Windows.Forms;class P{^[STAThread^]static void Main(){var o=new FolderBrowserDialog();if(o.ShowDialog()==DialogResult.OK)Console.WriteLine(o.SelectedPath);}} > "%TMP%\GetFolder.cs" && "%WINDIR%\Microsoft.NET\Framework\v4.0.30319\csc.exe" /nologo /out:"%TMP%\GetFolder.exe" "%TMP%\GetFolder.cs" && del "%TMP%\GetFolder.cs"
 ```
+## PDF
+---
+#setPDF-1.X
+
+This is the enhanced single line minified version of https://superuser.com/a/1933379/1769247
+Improvements are in errorlevel reporting and batch progress report. Each attempt should output:
+Status; message; filename and the errorlevel is either 0, 1 or 2.
+```
+!errorlevel! 0 = report mode     | !errorlevel! 0 = change mode
+---------------------------------+-----------------------------
+Header;  PDF 1.#; filename       | Success; Updated to 1.#; filename
+
+!errorlevel! 1 = report mode     | !errorlevel! 1 = change mode
+---------------------------------+-----------------------------
+Error; No filename; (missing)    | Error; Too many args;
+Error; Too small; filename       | Note for TEMPLATE usage you may change a file of OVER 8 bytes (i.e. at least one linefeed or white space)
+Error; File not found; filename  | Error; Minor must be a single digit between 0 and 9; filename
+Error; Bad header; filename      | Error; Minor is not in expected position; filename
+
+!errorlevel! 2 = report mode     | !errorlevel! 2 = change mode
+---------------------------------+-----------------------------
+Error; Access denied; filename   | Error; Access denied; filename
+Error; In use (read); filename   | Error; In use (write); filename
+```
+Run the following by either paste to console or include in a cmd file. Both depend on "C:\Windows\Microsoft.NET\Framework\v4.0.30319\csc.exe"
+```
+echo using System;using System.IO;using System.Text;class P{static int Main(string^[^] a){if(a.Length==0)return O("Error","No filename","(missing)\n usage: "+AppDomain.CurrentDomain.FriendlyName+" <filename>\n or\n "+AppDomain.CurrentDomain.FriendlyName+" <minor (0-9)> <filename>",1);if(a.Length==1){char m;int r=H(a^[0^],false,out m);if(r!=0)return r;return O("Header","PDF 1."+m,a^[0^],0);}if(a.Length==2){if(a^[0^].Length!=1^|^|a^[0^]^[0^]^<'0'^|^|a^[0^]^[0^]^>'9')return O("Error","Minor must be a single digit between 0 and 9",a^[1^],1);char m;int r=H(a^[1^],true,out m);if(r!=0)return r;using(var f=new FileStream(a^[1^],FileMode.Open,FileAccess.Write,FileShare.None)){f.Position=7;f.WriteByte((byte)a^[0^]^[0^]);}return O("Success","Updated to 1."+a^[0^],a^[1^],0);}return O("Error","Too many args","",1);}static int H(string p,bool w,out char m){m='0';try{using(var f=new FileStream(p,FileMode.Open,w?FileAccess.ReadWrite:FileAccess.Read,w?FileShare.None:FileShare.Read)){if(f.Length^<9)return O("Error","Too small",p,1);byte^[^] h=new byte^[8^];f.Read(h,0,8);string s=Encoding.ASCII.GetString(h);if(!s.StartsWith("%%PDF-1."))return O("Error","Bad header",p,1);char c=s^[7^];if(c^<'0'^|^|c^>'9')return O("Error","Minor is not in expected position",p,1);m=c;return 0;}}catch(FileNotFoundException){return O("Error","File not found",p,1);}catch(UnauthorizedAccessException){return O("Error","Access denied",p,2);}catch(IOException){return O("Error",w?"In use (write)":"In use (read)",p,2);}}static int O(string s,string d,string f,int c){Console.WriteLine(s+"; "+d+"; "+f);return c;}} >"%TMP%\temp.cs" && "C:\Windows\Microsoft.NET\Framework\v4.0.30319\csc.exe" /nologo /platform:x86 /out:"%~dp0setPDF-1.xx.exe" "%TMP%\temp.cs" && del "%TMP%\temp.cs"
+```
 
 # Ghostscript
 This is a collection of single line commands but some depend on a split line in a file.extension due to windows limitations.
@@ -144,6 +172,7 @@ Note the above assumes you know the total number first and GS could be used to c
 ```
 cpdf -add-text "Page %Page of %EndPage" -topright 20pt -font "Helvetica" -font-size 14 in.pdf -o out.pdf
 ```
+
 
 
 
