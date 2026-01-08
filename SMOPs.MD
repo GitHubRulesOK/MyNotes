@@ -52,7 +52,7 @@ After all runs are done then delete that temp folder using RD.
 cmd /r start msedge --headless=new --log-level=3 --user-data-dir="%cd%\temp" --no-pdf-header-footer --print-to-pdf="C:\Users\Public\Documents\out1.pdf"  --generate-pdf-document-outline "https://example.com">nul 2>&1 &&(for /l %i in (1,1,9) do (@if exist "C:\Users\Public\Documents\out1.pdf" start msedge --app="C:\Users\Public\Documents\out1.pdf#view=fitV" &exit)&timeout /t 1 >nul)
 ```
 ```
-start msedge --headless=new --no-pdf-header-footer --print-to-pdf="C:\Users\Public\Documents\out2.pdf"  --generate-pdf-document-outline "data:text/html,<title>Hello World PDF</title><style>@page { size: A4; } h1 { font-size: 12pt; font-family:Helvetica; margin: 0; } h2 { font-family:Helvetica; font-size: 36pt; font-weight: bold; text-align: center; margin: 0; }</style><body><h1>Page 1</h1><div><h2>Hello World!</h2><p style="font-family:webdings;font-size:200px;">MTJ</p></div><div style="page-break-before:always;"><h1>Page 2</h1></div></body>">nul 2>&1 &&(for /l %i in (1,1,9) do (@if exist "C:\Users\Public\Documents\out2.pdf" start msedge --app="C:\Users\Public\Documents\out2.pdf#view=fitV" &exit)&timeout /t 1 >nul)
+cmd /r start msedge --headless=new --no-pdf-header-footer --print-to-pdf="C:\Users\Public\Documents\out2.pdf"  --generate-pdf-document-outline "data:text/html,<title>Hello World PDF</title><style>@page{size:A4;} h1{font-size:12pt;font-family:Helvetica;margin:0;} h2 { font-family:Helvetica;font-size:36pt;font-weight:bold;text-align:center;}</style><body><h1>Page 1</h1><div><h2>Hello World!</h2><p style="font-family:webdings;font-size:200px;text-align:center;line-height:0;margin:130;">MTJ</p>Lora is sum thing else and then some more.</div><div style="page-break-before:always;"><h1>Page 2</h1></div></body>">nul 2>&1 &&(for /l %i in (1,1,9) do (@if exist "C:\Users\Public\Documents\out2.pdf" start msedge --app="C:\Users\Public\Documents\out2.pdf#view=fitV" &exit)&timeout /t 1 >nul)
 ```
 ![Hello Image](images/HTM-hello.png)
 
@@ -177,6 +177,7 @@ Note the above assumes you know the total number first and GS could be used to c
 ```
 cpdf -add-text "Page %Page of %EndPage" -topright 20pt -font "Helvetica" -font-size 14 in.pdf -o out.pdf
 ```
+
 
 
 
