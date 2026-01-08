@@ -93,12 +93,16 @@ echo using System;using System.Windows.Forms;class P{^[STAThread^]static void Ma
 ```
 ## PDF
 ---
-#setPDF-1.X
+# setPDF-1.X
 
-This is the enhanced single line minified version of https://superuser.com/a/1933379/1769247
+This is the enhanced single line minified version of a simple version editor for https://superuser.com/a/1933379/1769247
 Improvements are in errorlevel reporting and batch progress report. Each attempt should output:
 Status; message; filename and the errorlevel is either 0, 1 or 2.
 ```
+ usage: setPDF-1.X.exe <filename>
+ or
+ setPDF-1.X.exe <minor (0-9)> <filename>
+
 !errorlevel! 0 = report mode     | !errorlevel! 0 = change mode
 ---------------------------------+-----------------------------
 Header;  PDF 1.#; filename       | Success; Updated to 1.#; filename
@@ -172,6 +176,7 @@ Note the above assumes you know the total number first and GS could be used to c
 ```
 cpdf -add-text "Page %Page of %EndPage" -topright 20pt -font "Helvetica" -font-size 14 in.pdf -o out.pdf
 ```
+
 
 
 
