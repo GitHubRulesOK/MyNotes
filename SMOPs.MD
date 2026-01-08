@@ -91,9 +91,10 @@ echo using System;using System.Windows.Forms;class P{^[STAThread^]static void Ma
 ```
 echo using System;using System.Windows.Forms;class P{^[STAThread^]static void Main(){var o=new FolderBrowserDialog();if(o.ShowDialog()==DialogResult.OK)Console.WriteLine(o.SelectedPath);}} > "%TMP%\GetFolder.cs" && "%WINDIR%\Microsoft.NET\Framework\v4.0.30319\csc.exe" /nologo /out:"%TMP%\GetFolder.exe" "%TMP%\GetFolder.cs" && del "%TMP%\GetFolder.cs"
 ```
-## PDF
+
 ---
-# setPDF-1.X
+# PDF
+## setPDF-1.X
 
 This is the enhanced single line minified version of a simple version editor for https://superuser.com/a/1933379/1769247
 Improvements are in errorlevel reporting and batch progress report. Each attempt should output:
@@ -176,6 +177,7 @@ Note the above assumes you know the total number first and GS could be used to c
 ```
 cpdf -add-text "Page %Page of %EndPage" -topright 20pt -font "Helvetica" -font-size 14 in.pdf -o out.pdf
 ```
+
 
 
 
