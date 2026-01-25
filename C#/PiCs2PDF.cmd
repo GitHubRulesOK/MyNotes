@@ -138,7 +138,7 @@ class Program {
             int imgW = 0; int imgH = 0;
             Bitmap bmp = null;   // must exist outside the branch
             // Special cases: J2C/J2K/JP2 must NOT use Bitmap
-            if (ext == ".j2c" || ext == ".j2k" || ext == ".jp2")
+            if (ext == ".j2c" || ext == ".j2k" || ext == ".jp2" || ext == ".jpx")
             {
                 if (!TryParseJpxDimensions(file, out imgW, out imgH))
                 {
@@ -227,7 +227,7 @@ class Program {
                     imgObj, imgW, imgH, jpegBytes.Length));
                 pdf.Write(jpegBytes, 0, jpegBytes.Length);
                 Write("\nendstream\nendobj\n");
-            } else if (ext == ".j2c" || ext == ".j2k" || ext == ".jp2") {
+            } else if (ext == ".j2c" || ext == ".j2k" || ext == ".jp2" || ext == ".jpx") {
                 byte[] jpxBytes = File.ReadAllBytes(file);
                 positions.Add(pdf.Position);
                 Write(string.Format("{0} 0 obj <</Type/XObject/Subtype/Image/Width {1}/Height {2}/Filter/JPXDecode/Length {3}>>\nstream\n",
@@ -582,4 +582,5 @@ static bool TryParseJpxResolution(string file, out float dpiX, out float dpiY)
         pdf.Write(bytes, 0, bytes.Length);
     }
 }
+
 
