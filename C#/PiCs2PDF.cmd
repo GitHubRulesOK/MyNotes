@@ -1,4 +1,4 @@
-@echo off &Title Multi  Image 2 PDF C# Compile file, Version 2026-01-02-05
+@echo off &Title Multi  Image 2 PDF C# Compile file, Version 2026-01-25-06
 goto MAIN
 :README NOTES
 Open Sourced from https://github.com/GitHubRulesOK/MyNotes/blob/master/C%23/PiCs2PDF.cmd
@@ -128,7 +128,7 @@ class Program {
         {
             string ext = Path.GetExtension(file).ToLower(); // allow PDF acceptable image formats
             if (ext != ".bmp" && ext != ".gif" && ext != ".png" && ext != ".jpg" && ext != ".jpeg" && ext != ".tif" && ext != ".tiff" &&
-                ext != ".jp2" && ext != ".j2k" && ext != ".j2c") // this line needs special handlers
+                ext != ".j2c" && ext != ".j2k" && ext != ".jp2" && ext != ".jpx") // this line needs special handlers
             {
                 Console.WriteLine("Skipped unsupported format: " + file);
                 continue;
@@ -582,3 +582,4 @@ static bool TryParseJpxResolution(string file, out float dpiX, out float dpiY)
         pdf.Write(bytes, 0, bytes.Length);
     }
 }
+
