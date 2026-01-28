@@ -349,6 +349,7 @@ class DecoderGrid : Form
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
+
     private void BtnMode_Click(object sender, EventArgs e)
     {
         modeReverse = !modeReverse;
@@ -362,17 +363,13 @@ public static string CleanPdfTextMixed(string raw)
 {
     if (string.IsNullOrEmpty(raw))
         return "";
-
     StringBuilder result = new StringBuilder();
     int i = 0;
     int len = raw.Length;
-
     const int kerningSpaceThreshold = -200; // |value| >= 200 → space
-
     while (i < len)
     {
         char ch = raw[i];
-
         // Standalone or inline hexstring <....> (UTF-16BE)
         if (ch == '<')
         {
@@ -381,22 +378,18 @@ public static string CleanPdfTextMixed(string raw)
                 result.Append(hexText);
             continue;
         }
-
         // Text array [ ... ]TJ
         if (ch == '[')
         {
             i++;
             bool anyTextInThisArray = false;
-
             while (i < len && raw[i] != ']')
             {
                 // Skip whitespace
                 while (i < len && char.IsWhiteSpace(raw[i]))
                     i++;
-
                 if (i >= len || raw[i] == ']')
                     break;
-
                 // Literal string (...)
                 if (raw[i] == '(')
                 {
@@ -409,7 +402,6 @@ public static string CleanPdfTextMixed(string raw)
                     }
                     continue;
                 }
-
                 // Hexstring inside array <....>
                 if (raw[i] == '<')
                 {
@@ -421,17 +413,14 @@ public static string CleanPdfTextMixed(string raw)
                     }
                     continue;
                 }
-
                 // Kerning number
                 if (raw[i] == '-' || char.IsDigit(raw[i]))
                 {
                     int start = i;
                     if (raw[i] == '-')
                         i++;
-
                     while (i < len && char.IsDigit(raw[i]))
                         i++;
-
                     string numStr = raw.Substring(start, i - start);
                     int val;
                     if (int.TryParse(numStr, out val))
@@ -439,18 +428,14 @@ public static string CleanPdfTextMixed(string raw)
                         if (val <= kerningSpaceThreshold)
                             result.Append(' ');
                     }
-
                     continue;
                 }
-
                 // Anything else inside array: skip
                 i++;
             }
-
             // Skip closing ']'
             if (i < len && raw[i] == ']')
                 i++;
-
             // Skip trailing TJ/Tj
             while (i < len && char.IsWhiteSpace(raw[i]))
                 i++;
@@ -460,17 +445,13 @@ public static string CleanPdfTextMixed(string raw)
             {
                 i += 2;
             }
-
             if (anyTextInThisArray)
                 result.Append("\r\n");
-
             continue;
         }
-
         // Not array, not hexstring: skip
         i++;
     }
-
     return result.ToString();
 }
 
@@ -478,15 +459,12 @@ private static string ReadLiteralString(string raw, ref int i)
 {
     StringBuilder sb = new StringBuilder();
     int len = raw.Length;
-
     while (i < len && raw[i] != ')')
     {
         char c = raw[i];
-
         if (c == '\\')
         {
             int start = i + 1;
-
             // Octal \ddd
             if (start < len &&
                 raw[start] >= '0' && raw[start] <= '7')
@@ -499,14 +477,12 @@ private static string ReadLiteralString(string raw, ref int i)
                 {
                     octLen++;
                 }
-
                 string oct = raw.Substring(start, octLen);
                 int val = Convert.ToInt32(oct, 8);
                 sb.Append((char)val);
                 i += 1 + octLen;
                 continue;
             }
-
             // \r
             if (start < len && raw[start] == 'r')
             {
@@ -514,7 +490,6 @@ private static string ReadLiteralString(string raw, ref int i)
                 i += 2;
                 continue;
             }
-
             // \n
             if (start < len && raw[start] == 'n')
             {
@@ -522,7 +497,6 @@ private static string ReadLiteralString(string raw, ref int i)
                 i += 2;
                 continue;
             }
-
             // Escaped literal char: \( \) \\
             if (start < len)
             {
@@ -530,18 +504,14 @@ private static string ReadLiteralString(string raw, ref int i)
                 i += 2;
                 continue;
             }
-
             i++;
             continue;
         }
-
         sb.Append(c);
         i++;
     }
-
     if (i < len && raw[i] == ')')
         i++;
-
     return sb.ToString();
 }
 
@@ -550,28 +520,22 @@ private static string ReadHexUtf16(string raw, ref int i)
     // raw[i] == '<' on entry
     int len = raw.Length;
     i++; // skip '<'
-
     StringBuilder hex = new StringBuilder();
     while (i < len && raw[i] != '>')
     {
         char h = raw[i];
-
         if ((h >= '0' && h <= '9') ||
             (h >= 'A' && h <= 'F') ||
             (h >= 'a' && h <= 'f'))
         {
             hex.Append(h);
         }
-
         i++;
     }
-
     if (i < len && raw[i] == '>')
         i++; // skip '>'
-
     if (hex.Length == 0 || (hex.Length % 4) != 0)
         return "";
-
     StringBuilder sb = new StringBuilder();
     for (int p = 0; p < hex.Length; p += 4)
     {
@@ -579,7 +543,6 @@ private static string ReadHexUtf16(string raw, ref int i)
         int code = Convert.ToInt32(unit, 16);
         sb.Append((char)code); // includes 0003, 000D, 000A, etc.
     }
-
     return sb.ToString();
 }
 
@@ -727,7 +690,6 @@ void Decode()
         txtUtf16.Text = "";
         return;
     }
-
     // Clean input: remove < > whitespace etc.
     StringBuilder cleaned = new StringBuilder();
     foreach (char ch in raw)
@@ -736,7 +698,6 @@ void Decode()
             continue;
         cleaned.Append(ch);
     }
-
     string hexStream = cleaned.ToString().Trim();
     if (hexStream.Length < 4)
     {
@@ -744,22 +705,18 @@ void Decode()
         txtUtf16.Text = "";
         return;
     }
-
     StringBuilder sbText = new StringBuilder();
     StringBuilder sbUtf16 = new StringBuilder();
-
     // Process 4-digit tokens
     for (int i = 0; i + 3 < hexStream.Length; i += 4)
     {
         string token = hexStream.Substring(i, 4).ToUpper();
-
         if (modeReverse)
         {
             // -------------------------------
             // MODE A: CEL2CODE (reverse lookup)
             // -------------------------------
             int outputIndex = -1;
-
             for (int cell = 0; cell < 256; cell++)
             {
                 string cellValue = mapBoxes[cell].Text.Trim().ToUpper();
@@ -769,7 +726,6 @@ void Decode()
                     break;
                 }
             }
-
             if (outputIndex >= 0)
             {
                 char outChar = (char)outputIndex;
@@ -798,7 +754,6 @@ void Decode()
                 sbUtf16.Append("003F");
                 continue;
             }
-
             string unicodeHex = mapBoxes[index].Text.Trim();
             if (unicodeHex.Length == 0)
             {
@@ -807,10 +762,8 @@ void Decode()
                 sbUtf16.Append("003F");
                 continue;
             }
-
             if (unicodeHex.Length < 4)
                 unicodeHex = unicodeHex.PadLeft(4, '0');
-
             ushort unicodeValue;
             if (!ushort.TryParse(unicodeHex, System.Globalization.NumberStyles.HexNumber, null, out unicodeValue))
             {
@@ -819,7 +772,6 @@ void Decode()
                 sbUtf16.Append("003F");
                 continue;
             }
-
             char chOut = (char)unicodeValue;
             sbText.Append(chOut);
             if (sbUtf16.Length > 0) sbUtf16.Append(' ');
@@ -831,7 +783,6 @@ void Decode()
     txtUtf16.Text = sbUtf16.ToString();
 }
 
-
     [STAThread]
     static void Main()
     {
@@ -839,7 +790,3 @@ void Decode()
         Application.Run(new DecoderGrid());
     }
 }
-
-
-
-
