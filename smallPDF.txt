@@ -1,0 +1,26 @@
+%PDF-1.0
+
+5 0 obj<</Type/Page/Parent 2 0 R/MediaBox[0 0 595 792]/Contents 6 0 R/Resources<</Font<</F0 3 0 R/F1 4 0 R>>>>>>endobj
+6 0 obj<</Length 284>>stream
+BT /F0 32 Tf 30 TL 50 700 Td(Page 2)'
+/F0 18 Tf 30 TL
+30 -50 Td(2: Indented Second line should use same unindent for next)'
+-30 80 Td(3: Third line is just a description)' 0 5 Td
+(4: Simply add () around and end with ' each text line )'
+ET endstream endobj
+
+7 0 obj<</Type/Page/Parent 2 0 R/MediaBox[0 0 792 595]/Contents 8 0 R/Resources<</Font<</F0 3 0 R/F1 4 0 R>>>>>>endobj
+8 0 obj<</Length 284>>stream
+BT /F0 32 Tf 30 TL 50 500 Td(Page 1)'
+/F1 18 Tf 30 TL
+30 -20 Td(2: Indented Second line should use same unindent for next)'
+-30 0 Td(3: Third line is just a description)'
+(4: Simply add () around and end with ' each text line )'
+ET endstream endobj
+
+4 0 obj<</Type/Font/Subtype/Type1/BaseFont/CourierItalic>>endobj
+3 0 obj<</Type/Font/Subtype/Type1/BaseFont/Helvetica>>endobj
+2 0 obj<</Type/Pages/Kids[7 0 R 5 0 R]/Count 2>>endobj
+1 0 obj<</Type/Catalog/Pages 2 0 R>>endobj
+trailer<</Root 1 0 R>>
+%%EOF
