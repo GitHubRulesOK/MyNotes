@@ -35,7 +35,7 @@ Check the new.zip has 2 files and one is in "a folder"
 ```
 
 ## Gzip  
-**GZ.cmd  **
+**GZ.cmd**
 Files with a `.gz` extension are less common in Windows but can be easily Compressed and Decopressed using `gz <c|d> <in> <out>`
 Thus gz.exe also can be written as a compiled cmd using class G (GZipStream) rather than class Z (ZipFile.Open)
 ```
@@ -185,6 +185,7 @@ Note the above assumes you know the total number first and GS could be used to c
 ```
 cpdf -add-text "Page %Page of %EndPage" -topright 20pt -font "Helvetica" -font-size 14 in.pdf -o out.pdf
 ```
+
 
 
 
