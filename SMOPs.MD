@@ -34,6 +34,14 @@ Check the new.zip has 2 files and one is in "a folder"
 -rw-rw-r--  0 0      0          15 Dec 23 13:01 a folder/hello.txt
 ```
 
+## Gzip  
+**GZ.cmd  **
+Files with a `.gz` extension are less common in Windows but can be easily Compressed and Decopressed using `gz <c|d> <in> <out>`
+Thus gz.exe also can be written as a compiled cmd using class G (GZipStream) rather than class Z (ZipFile.Open)
+```
+echo using System;using System.IO;using System.IO.Compression;class G{static void Main(string^[^] a){if(a.Length^<3){Console.WriteLine("Usage: gz <c|d> <in> <out>");return;}if(a^[0^]=="c")using(var i=File.OpenRead(a^[1^]))using(var o=File.Create(a^[2^]))using(var g=new GZipStream(o,CompressionLevel.Optimal))i.CopyTo(g);else if(a^[0^]=="d")using(var i=File.OpenRead(a^[1^]))using(var g=new GZipStream(i,CompressionMode.Decompress))using(var o=File.Create(a[2]))g.CopyTo(o);}} > "%TMP%\gz.cs" && "C:\Windows\Microsoft.NET\Framework\v4.0.30319\csc.exe" /nologo /platform:x86 /out:"%CD%\gz.exe" "%TMP%\gz.cs" && del "%TMP%\gz.cs"
+```
+
 ## Write Text (or RTF) to PDF and display result
 TXT  
 ```cmd
@@ -177,6 +185,7 @@ Note the above assumes you know the total number first and GS could be used to c
 ```
 cpdf -add-text "Page %Page of %EndPage" -topright 20pt -font "Helvetica" -font-size 14 in.pdf -o out.pdf
 ```
+
 
 
 
