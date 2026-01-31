@@ -41,8 +41,9 @@ Thus gz.exe also can be written as a compiled cmd using class G (GZipStream) rat
 ```
 echo using System;using System.IO;using System.IO.Compression;class G{static void Main(string^[^] a){if(a.Length^<3){Console.WriteLine("Usage: gz <c|d> <in> <out>");return;}if(a^[0^]=="c")using(var i=File.OpenRead(a^[1^]))using(var o=File.Create(a^[2^]))using(var g=new GZipStream(o,CompressionLevel.Optimal))i.CopyTo(g);else if(a^[0^]=="d")using(var i=File.OpenRead(a^[1^]))using(var g=new GZipStream(i,CompressionMode.Decompress))using(var o=File.Create(a[2]))g.CopyTo(o);}} > "%TMP%\gz.cs" && "C:\Windows\Microsoft.NET\Framework\v4.0.30319\csc.exe" /nologo /platform:x86 /out:"%CD%\gz.exe" "%TMP%\gz.cs" && del "%TMP%\gz.cs"
 ```
-
-Both above problem tasks could be best handled with 7-Zip commands but often we want a simple one task command line helper or a more GUI approach so I wrote a simple "SendTo" command to check files are extractable or save a list of contents which too could be a single line command. But as a GUI it is much larger than a simple one line so can be found as ListArc at  https://github.com/GitHubRulesOK/MyNotes/tree/master/C%23
+## List-archive
+To look inside or first test a DocX (or other [g]Zip gz or many installers )for a listing of content and thus check both above problem tasks  
+Is best handled with 7-Zip commands but often we want a simple one task command line helper or a more GUI approach so I wrote a simple "SendTo" command to check files are extractable or save a list of contentsm which too could have been a single line command. But as a GUI it is much larger than a simple one line one can be found as "ListArc.CMD" at  https://github.com/GitHubRulesOK/MyNotes/blob/master/C%23/listarc.cmd
 
 ## Write Text (or RTF) to PDF and display result
 TXT  
@@ -187,6 +188,7 @@ Note the above assumes you know the total number first and GS could be used to c
 ```
 cpdf -add-text "Page %Page of %EndPage" -topright 20pt -font "Helvetica" -font-size 14 in.pdf -o out.pdf
 ```
+
 
 
 
