@@ -1,0 +1,21 @@
+<html><head><HTA:APPLICATION WINDOWSTATE="minimize" SHOWINTASKBAR="no" BORDER="none" CAPTION="no" SCROLL="no"><title>CSV Downloader</title><script language="VBScript">
+Sub Window_OnLoad
+Set fso=CreateObject("Scripting.FileSystemObject") : Set results=fso.OpenTextFile("Results.txt",8,True)
+If Not fso.FileExists("Disposition.txt") Then MsgBox "Disposition.txt not found" : window.close
+Set f=fso.OpenTextFile("Disposition.txt",1)
+Do Until f.AtEndOfStream
+line=Trim(f.ReadLine)
+If line<>"" Then
+parts=Split(line,",")
+If UBound(parts)=1 Then filename=Trim(parts(0)) : url=Trim(parts(1)) : Call DownloadOne(url,filename,results) Else results.WriteLine Now & " BAD LINE: " & line
+End If
+Loop
+f.Close : results.Close : MsgBox "Done. See Results.txt." : window.close
+End Sub
+
+Sub DownloadOne(url,filename,results)
+On Error Resume Next
+Set xhr=CreateObject("MSXML2.XMLHTTP") : xhr.open "GET",url,False : xhr.send
+If xhr.status=200 Then Set s=CreateObject("ADODB.Stream") : s.Type=1 : s.Open : s.Write xhr.responseBody : s.SaveToFile filename,2 : s.Close : results.WriteLine Now & " OK: " & filename & " <- " & url Else results.WriteLine Now & " ERR " & xhr.status & ": " & url
+End Sub
+</script></head><body></body></html>
