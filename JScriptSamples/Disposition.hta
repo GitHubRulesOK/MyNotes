@@ -1,5 +1,6 @@
-<html><head><HTA:APPLICATION WINDOWSTATE="minimize" SHOWINTASKBAR="no" BORDER="none" CAPTION="no" SCROLL="no"><title>CSV Downloader</title><script language="VBScript">
+<html><head><HTA:APPLICATION WINDOWSTATE="normal" SHOWINTASKBAR="no" BORDER="none" CAPTION="no" SCROLL="no"><title>CSV Downloader</title><script language="VBScript">
 Sub Window_OnLoad
+window.resizeTo 10,10 : window.moveTo (screen.availWidth - 10) \ 2, (screen.availHeight - 10) \ 2
  Set fso = CreateObject("Scripting.FileSystemObject") : Set results = fso.OpenTextFile("Results.txt", 8, True)
  If Not fso.FileExists("disposition.txt") Then
   MsgBox "disposition.txt not found" : window.close
@@ -16,7 +17,9 @@ Sub Window_OnLoad
    End If
   End If
  Loop
- f.Close : results.Close : MsgBox "Done. See Results.txt." : window.close
+ f.Close : results.Close
+' To NOT show the "Done" message add ' to start of next line same as this line
+MsgBox "Done. See Results.txt." : window.close
 End Sub
 
 Sub DownloadOne(url, filename, results)
