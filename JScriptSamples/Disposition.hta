@@ -19,7 +19,8 @@ window.resizeTo 10,10 : window.moveTo (screen.availWidth - 10) \ 2, (screen.avai
  Loop
  f.Close : results.Close
 ' To NOT show the "Done" message add ' to start of next line same as this line
-MsgBox "Done. See Results.txt." : window.close
+ MsgBox "Done. See Results.txt." 
+ window.close
 End Sub
 
 Sub DownloadOne(url, filename, results)
