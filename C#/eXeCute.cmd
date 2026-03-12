@@ -14,7 +14,7 @@ REM
 REM Notes:
 REM    This approach writes logs beside the executable.
 REM    If the target lives in a protected folder, change the log path to a user‑writable location.
-REM    This shim must not run if X<target>.exe already exists.
+REM    This shim must not run if Xtarget.exe already exists.
 REM
 REM FailSafe checks follow
 REM
@@ -114,3 +114,4 @@ class Program
         }
     }
 }
+
