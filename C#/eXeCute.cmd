@@ -1,6 +1,6 @@
 /*
 @echo off & cls
-REM eXeCute.cmd  26-03-12 v01
+REM eXeCute.cmd  26-03-12 v02
 REM
 REM This file is a DUPE (Doppelgänger User Proxy Executable) i.e. a "Shim".
 REM Its purpose is to shadow and log commands sent to an executable,
@@ -71,6 +71,7 @@ class Program
                            && !Console.IsOutputRedirected;
         if (interactive)
         {
+            Console.WriteLine("Command: " + exeName + " " + argString);
             Console.WriteLine("Press ENTER to forward, ESC to cancel.");
             var key = Console.ReadKey(true);
             if (key.Key == ConsoleKey.Escape)
@@ -114,4 +115,5 @@ class Program
         }
     }
 }
+
 
