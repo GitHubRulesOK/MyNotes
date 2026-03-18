@@ -18,7 +18,7 @@ https://github.com/GitHubRulesOK/MyNotes/raw/master/AppNotes/SumatraPDF/Addins/O
 My custom file to be saved as initial replacement SumatraPDF-settings.txt for pre-loading all these addins
 
 ExportPNG \
-https://github.com/GitHubRulesOK/MyNotes/tree/master/AppNotes/SumatraPDF/Addins/ExportPng \
+Migrated to https://github.com/GitHubRulesOK/SumatraPDF-Plus/blob/master/Plus/ExportPng.cmd
 A script which requires and uses MuPDF to convert a page or pages to PNG format.
 		
 N-Up-PDF \
