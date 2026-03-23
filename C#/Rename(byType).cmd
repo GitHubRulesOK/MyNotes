@@ -1,11 +1,10 @@
 /*
+C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc  /platform:x86  /reference:System.IO.Compression.dll /reference:System.IO.Compression.FileSystem.dll "%~0"  
+exit /b
+
 Beware this was a quick fix to add extentions to a mixed bag of files without extensions  
 Thus would name a docX or other PK file like CBZ or EPUB to .ZIP as they are PK.zips.
 There are no Usage instructions, as it is a proof of concept for expansion.
-
-C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc  /platform:x86  /reference:System.IO.Compression.dll /reference:System.IO.Compression.FileSystem.dll "%~0"  
-
- exit /b
  
   */
 using System; using System.IO; using System.Collections.Generic;
