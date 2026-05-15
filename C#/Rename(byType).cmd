@@ -1,12 +1,30 @@
-/*
-C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc  /platform:x86  /reference:System.IO.Compression.dll /reference:System.IO.Compression.FileSystem.dll "%~0"  
+/*&cls&@echo off&rem       SEE THE NOTES BELOW
+
+setlocal enabledelayedexpansion
+rem set "NATIVE_CURL=%SystemRoot%\System32\curl.exe"
+rem if not exist "%NATIVE_CURL%" ( echo Native curl.exe not available. & pause & exit /b )
+rem set "NATIVE_TAR=%SystemRoot%\System32\tar.exe"
+rem if not exist "%NATIVE_TAR%" ( echo Native tar.exe not available. & pause & exit /b )
+
+set "CSC=%SystemRoot%\Microsoft.NET\Framework64\v4.0.30319\csc.exe"
+if not exist "%CSC%" set "CSC=%SystemRoot%\Microsoft.NET\Framework\v4.0.30319\csc.exe"
+if not exist "%CSC%" ( echo Compiler not found & pause & exit /b )
+for %%I in ("%CSC%") do set "CSCDIR=%%~dpI"
+set "PATH=%CSCDIR%;%PATH%"
+
+"%CSC%" /nologo /optimize /platform:x86 /out:"%~n0.exe" "%~0"
+if errorlevel 1 ( echo Compilation failed & pause & exit /b 1 )
+echo Windows native CS Compilation as "%~n0.exe"succeeded
+pause
 exit /b
 
+NOTES
+-----
 Beware this was a quick fix to add extentions to a mixed bag of files without extensions  
 Thus would name a docX or other PK file like CBZ or EPUB to .ZIP as they are PK.zips.
 There are no Usage instructions, as it is a proof of concept for expansion.
  
-  */
+*/
 using System; using System.IO; using System.Collections.Generic;
 
 class FileTypeRenamer
