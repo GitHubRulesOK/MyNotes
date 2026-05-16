@@ -1,8 +1,13 @@
-/*
-@echo off
-cd /d "%~dp0" & 
-set "CSC=C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe"
-if not exist "%CSC%" echo Compiler not found & pause exit /b
+/*&cls&@echo off&rem       SEE THE NOTES BELOW
+
+cd /d "%~dp0" & setlocal enabledelayedexpansion
+
+set "CSC=%SystemRoot%\Microsoft.NET\Framework64\v4.0.30319\csc.exe"
+if not exist "%CSC%" set "CSC=%SystemRoot%\Microsoft.NET\Framework\v4.0.30319\csc.exe"
+if not exist "%CSC%" ( echo Compiler not found & pause & exit /b )
+for %%I in ("%CSC%") do set "CSCDIR=%%~dpI"
+set "PATH=%CSCDIR%;%PATH%"
+
 if not exist "%~dp07z.exe" (
     echo 7z.exe not found in this folder.
     echo. &  echo Do you want to try to download 7-Zip files here now? & echo.
@@ -11,24 +16,31 @@ if not exist "%~dp07z.exe" (
         echo Aborted by user. & pause & exit /b
     )
     echo Downloading 7-Zip.exe...
-    curl -Lo "%~dp07-Zip-25-01-Installer.exe" https://www.7-zip.org/a/7z2501.exe
+    "%NATIVE_CURL%" -Lo "%~dp07-Zip-26-01-Installer.exe" https://github.com/ip7z/7zip/releases/download/26.01/7z2601.exe
     if not exist "%~dp07-Zip-25-01-Installer.exe" (
         echo Download failed. & pause & exit /b
     )
     echo Unpacking 7-Zip.
-    "%~dp07-Zip-25-01-Installer.exe" /S /D="%~dp0"
+    "%~dp07-Zip-26-01-Installer.exe" /S /D="%~dp0"
     echo.
 )
-"%CSC%" /nologo /target:winexe /platform:x86 /out:"%~dpn0.exe" "%~0"
-if exist "%~dpn0.exe" echo "%~dpn0" compiled successfully.
+
+"%CSC%" /nologo /optimize /target:winexe /platform:x86 /out:"%~n0.exe" "%~0"
+if errorlevel 1 ( echo Compilation failed & pause & exit /b 1 )
+
+if not exist "%~dpn0.exe" echo "%~dpn0" not found, possibly compile failed.
+if exist "%~dpn0.exe" echo Windows native CS Compilation as "%~n0.exe"succeeded
+pause
 exit /b
 
-Recomended name "ListArc"........Initial release 2026-01-30-01
+NOTES
+-----
+Recomended name "ListArc"........Initial release 2026-05-16-02
 
 This is a self‑compiling C# graphics utility.
 Run this .CMD file to compile ListArc.exe.
 
-It expects to be run in a folder where 7z.exe already exists thus asks when not found.
+It expects to be run in a folder where 7z.exe already exists thus asks to download a recent copy when not found.
 Once compiled, place A SHORTCUT of ListArc.exe in Win + R shell:sendto.
 
 The purpose is to list archive contents without launching the fuller GUI 7zFM.exe.
