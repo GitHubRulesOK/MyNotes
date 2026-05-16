@@ -16,8 +16,8 @@ if not exist "%~dp07z.exe" (
         echo Aborted by user. & pause & exit /b
     )
     echo Downloading 7-Zip.exe...
-    "%NATIVE_CURL%" -Lo "%~dp07-Zip-26-01-Installer.exe" https://github.com/ip7z/7zip/releases/download/26.01/7z2601.exe
-    if not exist "%~dp07-Zip-25-01-Installer.exe" (
+    CURL -Lo "%~dp07-Zip-26-01-Installer.exe" https://github.com/ip7z/7zip/releases/download/26.01/7z2601.exe
+    if not exist "%~dp07-Zip-26-01-Installer.exe" (
         echo Download failed. & pause & exit /b
     )
     echo Unpacking 7-Zip.
