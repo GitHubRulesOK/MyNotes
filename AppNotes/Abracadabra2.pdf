@@ -9,7 +9,7 @@
 8 0 obj<</BBox[0 0 150 50]/Length 0/Resources<<>>/Subtype/Form/Type/XObject>>stream
 endstream
 endobj
-9 0 obj<</Length 597>>stream
+9 0 obj<</Length 648>>stream
 BT 15 800 Td 40 TL /1 18 Tf
 (PlainText = http://foersom.com/net/HowTo/data/OoPdfFormExample.pdf)'
 /1 16 Tf 40 TL (12  letters.)' 20 TL
@@ -22,8 +22,8 @@ BT 15 800 Td 40 TL /1 18 Tf
 40 TL
 (goto page in another PDF)' 20 TL
 (Also plain text = https://pdfobject.com/pdf/sample-3pp.pdf#page=2)' 25 TL/1 11 Tf
-120 140 Td(Sign and Secure this file.txt as a PDF with Adobe Reader)'
--5 -40 Td(or click https://www.adobe.com/acrobat/online/sign-pdf.html)'
+10 140 Td(Click in the box to Digitally Sign and Secure this TextFile.txt as a PDF with Adobe Reader OR SumatraPDF 3.7+)'
+96 -40 Td(or click https://www.adobe.com/acrobat/online/sign-pdf.html)'
 ET
 220 680 150 50 re
 S
@@ -44,5 +44,5 @@ xref
 trailer
 <</Size 10/Root 1 0 R>>
 startxref
-2501
+2553
 %%EOF
